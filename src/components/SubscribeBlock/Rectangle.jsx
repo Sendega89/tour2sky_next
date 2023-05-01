@@ -8,7 +8,7 @@ const Rectangle = () => {
     const subscribeMe = (e) => {
         console.log(e)
         //subscribe.subscribe(e.target[0].value)
-       // e.preventDefault()
+        e.preventDefault()
        // e.target[0].value = ''
     }
 
