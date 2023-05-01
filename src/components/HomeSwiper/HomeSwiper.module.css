@@ -1,0 +1,40 @@
+
+.the_best {
+    caret-color: transparent;
+    padding:16px 0 64px 0;
+    text-align: center;
+}
+
+.the_best a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background-image: linear-gradient(to bottom, rgba(44, 62, 80, 0), #1a2d3f);
+}
+
+.the_best a span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    /*text-align: center;*/
+    color: #ffffff;
+}
+.noImageItem {
+    display: flex;
+    flex-direction: column;
+}
+.noImageItemImage {
+   min-height: 170px;
+}
+.bullet {
+
+}
+.the_bestItem img {
+    height: 196px;
+}

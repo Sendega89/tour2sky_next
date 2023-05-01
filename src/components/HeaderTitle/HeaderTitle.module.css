@@ -1,0 +1,145 @@
+/*
+.header_title {
+    !*background-image: url('/images/header_fon.jpg');*!
+    min-height: 525px;
+    padding: 53px 0 30px 0;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+!*.balloning .header_title {
+  background-image: url('../src/assets/img/header-bg2.jpg');
+}*!
+
+!*.error200 .header_title {
+  background-image: url('../src/assets/img/header-bg3.jpg');
+}
+
+.catalog .header_title {
+  background-image: url('../src/assets/img/header-bg3.jpg');
+}*!
+
+.header_title h1 {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.31);
+    color: #ffffff;
+    line-height: normal;
+    margin-bottom: 31px;
+}
+
+.header_title .container {
+    max-width: 860px;
+}
+
+.input_search {
+    max-height: 65px;
+    font-size: 28px;
+    padding: 15px 29px 16px 29px;
+    float: left;
+    width: 77.5%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    color: #2980b9
+}
+!*.header_search button {
+    float: right;
+    width: 22.5%;
+    max-height: 65px;
+    min-width: auto;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: larger;
+}*!
+
+.section {
+    padding: 0;
+}
+
+.services {
+    padding-bottom: 20px;
+}
+
+.services_item {
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.services_item_vn {
+    !*background: url('../src/assets/img/sfon.svg') no-repeat center top;*!
+    font-size: 24px;
+    font-weight: 300;
+    color: #2f3337;
+    padding-top: 12px;
+    min-height: 190px;
+}
+
+.services span {
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.services_num {
+    font-family: Ubuntu, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+.services_icon {
+}
+
+.services_item:nth-child(2) .services_item_vn {
+    padding-top: 28px;
+}
+
+.services_item:nth-child(3) .services_item_vn {
+    padding-top: 32px;
+}
+
+.row_title {
+    margin-bottom: 39px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.row_title h3 {
+    position: relative;
+    padding: 21px 0;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.row_title h3::before {
+    content: '';
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    width: 77px;
+    height: 77px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f6f8;
+    z-index: -1;
+}
+
+.row_title p {
+    margin-bottom: 0;
+    margin: 0 auto;
+    max-width: 555px;
+    font-size: 14px;
+}
+
+.row_title_white h3, .row_title_white p {
+    color: white;
+}
+
+.row_title_white h3::before {
+    background-color: #2980b9;
+}
+*/
