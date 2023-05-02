@@ -1,15 +1,15 @@
-import s from "./Rectangle.module.css";
-//import {subscribe} from "../../pages/api/api";
+import s from "./SubscribeForm.module.css";
+import {subscribe} from "../../pages/api/api";
 
 
 
-const Rectangle = () => {
+const SubscribeForm = () => {
 
     const subscribeMe = (e) => {
         console.log(e)
-        //subscribe.subscribe(e.target[0].value)
+        subscribe.subscribe(e.target[0].value)
         e.preventDefault()
-       // e.target[0].value = ''
+        e.target[0].value = ''
     }
 
 
@@ -32,4 +32,4 @@ const Rectangle = () => {
     </div>
 
 }
-export default Rectangle
+export default SubscribeForm

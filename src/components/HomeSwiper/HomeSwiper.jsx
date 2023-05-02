@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
 import Image from "next/image";
-
+import imageWithoutImage from "../../../images/imageWithoutImage.png"
 
 const HomeSwiper = ({placesList,categoryLink}) => {
     return (
@@ -42,10 +42,17 @@ const HomeSwiper = ({placesList,categoryLink}) => {
                         </div>
                     </SwiperSlide>:
                     <SwiperSlide key={p.id}>
-                        <div className={s.noImageItem} key={p.id}>
-                               <div className={s.noImageItemImage}>No Image</div>
-                               <div> <Link href={`/${categoryLink ?? ""
-                               }/${p?.link}`}>{p.name  || "Name"}</Link></div>
+                        <div key={p.id} className={`item ${s.the_bestItem}`}
+                        >
+                            <Link href={`/${categoryLink || ""
+                            }/${p.link || ""}`}>
+                                <div style={{position: 'relative', width:'100%',height:"196px"}}>
+                                        <Image layout="fill"
+                                               src={imageWithoutImage}
+                                               alt={p?.name ||"activity"}/>
+                                        <span>{p?.name || ""}</span>
+                                    </div>
+                            </Link>
                         </div>
                     </SwiperSlide>
                 }</div>

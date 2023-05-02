@@ -1,5 +1,6 @@
 import s from "./HeaderTitle.module.css"
-import headerFon from "../../../images/header_fon.jpg"
+
+
 
 
 
@@ -8,7 +9,9 @@ const HeaderTitle = () => {
 
 
     return (
-        <div className="header_title" style={{backgroundImage:`url(${headerFon})`}}>
+
+            <div className="contentHome">
+        <div className="header_title">
             <div className="container">
                 <div className="row">
                     <h1>Find Air Activities<br/>Anywhere</h1>
@@ -38,6 +41,8 @@ const HeaderTitle = () => {
                 </div>
             </div>
         </div>
+    </div>
+
     )
 }
 export default HeaderTitle

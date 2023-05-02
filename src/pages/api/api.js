@@ -20,11 +20,12 @@ export const instance = axios.create(
        // headers: {Authorization: JWTToken},
     }
 );
-instance.interceptors.request.use((config) => {
+
+   /*instance.interceptors.request.use((config) => {
         config.headers.Authorization = localStorage.getItem('jwt')
         return config
     }
-)
+)*/
 
 export const locationAPI = {
     getCountry(continent_id) {

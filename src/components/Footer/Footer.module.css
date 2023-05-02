@@ -1,0 +1,126 @@
+.footer {
+    background: url('../../../images/footer_fon.jpg') no-repeat;
+    background-size: cover;
+    min-height: 158px;
+    padding: 27px 0 40px 0;
+    color: white;
+    bottom: 0;
+    width: 100%;
+}
+.footer img {
+
+}
+.footer a {
+    color: white;
+    font-size: 12px;
+}
+
+.footer a:hover {
+    color: #33cccc;
+    text-decoration: none;
+}
+
+.footer .footer_l {
+    float: left;
+    width: 15%;
+}
+
+.footer .footer_r {
+    float: left;
+    width: 20%;
+}
+
+.footer .footer_c {
+    float: left;
+    width: 25%;
+    line-height: 1;
+    padding-left: 9px;
+}
+
+.footer .footer_logo {
+    float: left;
+    width: 80%;
+    height: 100%;
+}
+
+.footer .soc {
+    float: left;
+    width: 20%;
+    padding-left: 24px;
+    padding-top: 24px;
+}
+
+.footer .soc span {
+    font-size: 12px;
+    display: block;
+    color: #ecf0f1;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.footer .soc .row a {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.footer .soc .row a:hover svg, .f_pay a:hover svg {
+    filter: grayscale(100%)
+}
+
+.footer .footer_r {
+    line-height: 1;
+}
+
+.footer .f_mail {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 24px;
+}
+
+.footer .f_mail a {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.footer .f_pay {
+    float: left;
+    width: 57%;
+}
+
+.footer .f_pay a {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.footer .f_pay a:last-child {
+    margin: 0;
+}
+
+.footer .f_link {
+    float: right;
+    width: 43%;
+    padding-top: 15px;
+}
+
+.footer .f_link a {
+    text-decoration: underline;
+}
+
+.footer .footer_r {
+}
+
+.footer .footer_r ul {
+    float: left;
+    width: 50%;
+    padding-left: 23px;
+}
+
+.footer .footer_r ul li {
+    list-style: none;
+    display: block;
+}
+
+.footer .footer_r ul li a {
+    display: block;
+    padding: 3px 0 7px 0;
+}

@@ -1,22 +1,22 @@
 import footerLogo from "../../../images/footer_logo.png";
 import Link from "next/link";
 import Image from "next/image";
-
+import s from "./Footer.module.css"
 
 const Footer = () => {
 
-    return <footer>
+    return <footer className={s.footer}>
         <div className="container">
     <div className={"row mainFooter"}>
-                <div className={"footer_l"}>
+                <div className={s.footer_l}>
                     {/* Start footer_logo*/}
-                    <Image  src={footerLogo} alt="Tour2Sky" className={'footer_logo'} />
+                    <Image  src={footerLogo} alt="Tour2Sky" className={s.footer_logo} />
                     {/*<Link to="/">
 
                     </Link>*/}
                     {/* End footer_logo*/}
                 </div>
-                <div className={"soc"}>
+                <div className={s.soc}>
         <span>Socials:</span>
         <div className="row">
             <Link href="/" >
@@ -55,10 +55,10 @@ const Footer = () => {
             </Link>
         </div>
     </div>
-                <div className={"footer_c"}>
-                    <div className={"f_mail"}>Email us: <a href="mailto:info@tour2sky.com">info@tour2sky.com</a></div>
+                <div className={s.footer_c}>
+                    <div className={s.f_mail}>Email us: <a href="mailto:info@tour2sky.com">info@tour2sky.com</a></div>
                     <div className={"row"}>
-                        <div className={"f_pay"}>
+                        <div className={s.f_pay}>
                             <Link href="/" target="_blank"  rel="noopener">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="56" height="34" viewBox="0 0 56 34">
                                     <g fill="none" fillRule="evenodd">
@@ -88,12 +88,12 @@ const Footer = () => {
                                 </svg>
                             </Link>
                         </div>
-                        <div className={"f_link"}>
+                        <div className={s.f_link}>
                             <Link href="/">Terms & Conditions</Link>
                         </div>
                     </div>
                 </div>
-                <div className={"footer_r"}>
+                <div className={s.footer_r}>
                     <ul>
                         <li><Link href="/">Link to information</Link></li>
                         <li><Link href="/">Become a partner</Link></li>

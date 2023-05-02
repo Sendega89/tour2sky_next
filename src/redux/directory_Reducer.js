@@ -1,4 +1,4 @@
-import {directory} from "@/pages/api/api";
+import {categoriesAPI, directory} from "@/pages/api/api";
 
 
 const SET_DIRECTORY_ORDER_STATUS = "tour2sky-project/directory/SET_DIRECTORY_ORDER_STATUS";
@@ -124,7 +124,6 @@ export const getServiceStatus = () => async (dispatch) => {
     }
 }
 export const getCategories = () => async (dispatch) => {
-
     try {
         let response = await directory.getCategories()
         dispatch(setCategories(response.data))
