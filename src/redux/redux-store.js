@@ -3,6 +3,7 @@ import thunkMeddleWare from "redux-thunk";
 import page_Reducer from "./page_Reducer";
 import profile_Reducer from "@/redux/profile_Reducer";
 import directory_Reducer from "@/redux/directory_Reducer";
+import location_Reducer from "@/redux/location_Reducer";
 
 
 
@@ -11,6 +12,7 @@ let reducers = combineReducers({
     page:page_Reducer,
     profilePage: profile_Reducer,
     directory:directory_Reducer,
+    location:location_Reducer,
 });
 
 

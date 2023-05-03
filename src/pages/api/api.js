@@ -200,6 +200,7 @@ export const activityLocationAPI = {
 };
 export const categoriesAPI = {
     getCategoriesView(categoryLink) {
+        /*const data = res.json();*/
         return instance.get(`category/${categoryLink}`);
     }
 }

@@ -1,0 +1,33 @@
+.bookmark {
+
+}
+.serviceItem {
+    width: 263px;
+    height:374px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0 01px rgba(10, 31, 68, 0.08), 0 8px 10px rgba(10, 31, 68, 0.1);
+    border-radius: 12px;
+}
+
+.serviceItemTop {
+    flex:0 0 30%;
+}
+.serviceItem img {
+    width: 263px;
+}
+.serviceItemCenter {
+    flex:0 0 60%;
+    padding:0 12px ;
+}
+.serviceItemBottom {
+    flex:0 0 10%;
+}
+.serviceItemCenterInfo {
+    display: flex;
+    justify-content: space-between;
+}
+.serviceItemCenterDescription {
+    overflow: hidden;
+}
