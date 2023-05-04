@@ -9,8 +9,6 @@ import BestCities from "../components/BestCities/BestCities"
 import About from "../components/About/About"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
-import {categoriesAPI} from "@/pages/api/api";
-import axios from "axios";
  import { GetStaticPaths, GetStaticProps } from "next";
 
 

@@ -34,10 +34,10 @@ type CardProps = {
 const ProductCard = (props: CardProps) => {
 
         const [checked, setChecked] = useState(true);
-        const handleChange = (event) => {
-            if (props.isAuth) {
+        const handleChange = (event:HTMLInputElement) => {
+            /*if (props.isAuth) {
                 setChecked(event.target.checked);
-            }
+            }*/
         }
 
 

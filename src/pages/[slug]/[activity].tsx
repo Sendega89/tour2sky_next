@@ -290,7 +290,7 @@ const Activity = ({data}:Props) => {
                                                 {popularCities?.map(popCity =>
                                                     <li key={popCity?.id}>
                                                         <Link className={`${+popCity.id && "active"}`}
-                                                                 to={`/${activityLocation?.category_link}/${popCity.link}`}>
+                                                                 href={`/${activityLocation?.category_link}/${popCity.link}`}>
                                                             {popCity?.name}</Link></li>)}
                                             </ul>
                                         </div>
@@ -365,7 +365,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps:GetStaticProps = async ({params}) => {
     const res = await fetch(`https://t2sb.rcnwd.com/api/page/activity-location/special-link/${params?.slug}-${params?.activity}`);
-    const data = await res.json();
+    const data =await res.json();
     return {
         props: {
             data

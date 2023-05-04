@@ -1,0 +1,61 @@
+.slideNavBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slickSlideItem {
+    padding: 0 5px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.slideNavCarousel {
+    width: 90%;
+    padding: 0;
+    align-content: space-between;
+}
+
+.slideNavCarousel  img {
+    border-radius: 12px;
+    height: 100px;
+    overflow: hidden;
+    display: block;
+    /*height: auto;*/
+    vertical-align: middle;
+    border: none;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.slickArrow {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    line-height: 1;
+    font-size: 20px;
+    background-color: #ecf0f1;
+    color: #b6c2cc;
+    padding-top: 10px;
+
+}
+.slickArrow:hover {
+    color:#2980b9;
+}
+
+.slickLeft {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: relative;
+    left:5px;
+}
+
+.slickRight {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+    right: 4px;
+}
+.slickSlide a {
+    border-radius:16px;
+    padding: 10px;
+}
