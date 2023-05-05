@@ -17,6 +17,7 @@ import HeaderTitle from "../components/HeaderTitle/HeaderTitle";
 import ServiceStart from "../components/ServiceStart/ServiceStart";
 import SubscribeForm from "../components/SubscribeBlock/SubscribeForm";
 import About from "../components/About/About";
+import {AnyAction} from "redux";
 
 /*const inter = Inter({ subsets: ['latin'] })*/
 
@@ -25,19 +26,21 @@ import About from "../components/About/About";
 
 
 export default function Home() {
-  const categoriesInMenu = useSelector((state) => state.directory.categoriesInMenu);
-  const homePageInfo = useSelector((state) => state.page.homePageSEO);
-  const dispatch = useDispatch()
+  const categoriesInMenu = useSelector((state:any) => state.directory.categoriesInMenu);
+  const homePageInfo = useSelector((state:any) => state.page.homePageSEO);
+  const dispatch:any = useDispatch()
   const getEnterProfile = useSelector(() => getEnterToProfile);
   const getCities = useSelector(() => getTopCities);
   const getIndexStatuses = useSelector(() => getIndexStatus);
   const getCategoryInMenu = useSelector(() => getCategories);
   const getHomePage = useSelector(() => getHomePageInfo);
-  const isAuth = useSelector((state) => state.profilePage.isAuth);
-  const placesList = useSelector((state) => state.page.topCities);
-  let catId = categoriesInMenu.find((item, index) => index === 0);
+  const isAuth = useSelector((state:any) => state.profilePage.isAuth);
+  const placesList = useSelector((state:any) => state.page.topCities);
+  let catId = categoriesInMenu.find((item:any, index:number) => index === 0);
   const [categoryLink, setCategoryLink] = useState(catId?.link);
   const [value, setValue] = useState();
+
+
   useEffect(() => {
     dispatch(getHomePage())
     dispatch(getEnterProfile())
@@ -50,8 +53,8 @@ export default function Home() {
   },  [isAuth,categoryLink, catId?.id, catId?.link])
 
 
-  const handleChange = (event, newValue) => {
-    setCategoryLink(event.currentTarget.name)
+  const handleChange = (event:any, newValue:any) => {
+    setCategoryLink(event?.currentTarget?.name)
     setValue(newValue);
   };
 
@@ -84,7 +87,8 @@ export default function Home() {
                       aria-label="secondary tabs example"
                   >
 
-                    {categoriesInMenu?.map(c =>
+                    {categoriesInMenu?.map((c:any) =>
+                        // @ts-ignore
                         <Tab sx={{
                           bgcolor: "#ECF0F1",
                           marginRight: "10px",

@@ -1,3 +1,4 @@
+/*
 import React, {useEffect} from "react";
 
 
@@ -64,7 +65,7 @@ const Ballooning = () => {
                 </div>
             </div>
 
-            {/* Start top */}
+            {/!* Start top *!/}
             <div className="container">
                 <div className="row best_cities section">
                     <h3>{changedCategory?.category?.header_2}</h3>
@@ -72,7 +73,7 @@ const Ballooning = () => {
                 </div>
 
             </div>
-            {/* End top*/}
+            {/!* End top*!/}
 
             <div className="container">
             <About title={changedCategory?.category?.header_3}  description={changedCategory.category.description}/>
@@ -80,4 +81,4 @@ const Ballooning = () => {
         </main>
     </>
 }
-export default Ballooning
+export default Ballooning*/

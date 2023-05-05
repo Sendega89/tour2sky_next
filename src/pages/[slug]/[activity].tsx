@@ -28,31 +28,35 @@ type Data = {
     };
     description: string;
     cities:{data:[]}
-    services:{data:[]}
+    services:{data:[]},
+    category_id:string,
+    region_id:string,
+    seo_title:string,
+
 }
 type Props = {
     data: Data;
 }
 
 
-const Activity = ({data}:Props) => {
-    let activityLocation:Data = data
+const Activity = ({data}:any) => {
+    let activityLocation = data
     const dispatch = useDispatch();
     const router = useRouter();
     const { currentLink, currentCity } = router.query;
+    const [minTime, setMinTime] = useState(14);
+    const [maxTime, setMaxTime] = useState(100);
 
-    /*let categoryLink = params.currentLink;
-    let currentCity = params.currentCity;*/
     //const productCards = useSelector((state) => state.productCards);
    // const pagination = useSelector((state) => state.productCards.pagination);
-    const isAuth = useSelector((state) => state.profilePage.isAuth);
+   // const isAuth = useSelector((state:any) => state.profilePage.isAuth);
    // const isFavoriteItem = useSelector((state) => state.myAccount.isFavoriteItem);
     const getPopularCities = useSelector(() => getPopular_city);
     //const activityInLocation = useSelector(() => getActivityLocationSpecialLink);
     //const filterCatalog = useSelector(() => getFilteredCatalog);
     //const activityLocation = useSelector((state) => state.activityLocation.activityLocationView);
    // const activityLocationServices = useSelector((state) => state.activityLocation.activityLocationViewServices);
-   const popularCities = useSelector((state) => state.location.popular_city.data);
+   const popularCities = useSelector((state:any) => state.location.popular_city.data);
     //const [page, setPage] = useState(pagination.current_page || 1);
     const [minPrice, setMinPrice] = useState(undefined);
     const [maxPrice, setMaxPrice] = useState(undefined);
@@ -63,26 +67,26 @@ const Activity = ({data}:Props) => {
 
 
 
-    const changeSelect = (e) => {
+    const changeSelect = (e:any) => {
         setSort(e.target.value)
     }
-    const changeCheckBox = (e) => {
-        let newArray = [...rating, +e.target.id];
-        if (rating.includes(+e.target.id)) {
+    const changeCheckBox = (e:any) => {
+        /*let newArray = [...rating, +e?.target.id];
+        if (rating.includes(+e?.target?.id)) {
             newArray = newArray.filter(day => day !== +e.target.id);
-        }
-        setRating(
+        }*/
+        /*setRating(
             newArray
-        );
+        );*/
     }
     useEffect(() => {
         //dispatch(activityInLocation(categoryLink, currentCity))
-        if (activityLocation?.category_id && activityLocation?.region_id) {
+        /*if (activityLocation?.category_id && activityLocation?.region_id) {
             dispatch(getPopularCities(
                 activityLocation.category_id,
                 activityLocation.region_id
             ))
-        }
+        }*/
         /*dispatch(filterCatalog({
             categoryLink, currentCity,activityLocationLink:activityLocation?.link,
             sort, rating, page,
@@ -136,18 +140,18 @@ const Activity = ({data}:Props) => {
                                 <div className="row wighet">
                                     <h4>Filter by price</h4>
                                     <div className="row wighet_row">
-                                        <Slider range enableReinitialize
-                                                onAfterChange={(value) => {
+                                        <Slider range
+                                                /*onAfterChange={(value) => {
                                                     setMaxPrice(value[1]);
                                                     setMinPrice(value[0]);
-                                                    /*dispatch(filterCatalog({
+                                                    /!*dispatch(filterCatalog({
                                                         currentLink, currentCity,
                                                         maxPrice: value[1], minPrice: value[0],
                                                         maxTime, minTime,
                                                         sort, rating, page
-                                                    }))*/
-                                                }}
-                                                onChange={(value) => {
+                                                    }))*!/
+                                                }}*/
+                                                onChange={(value:any) => {
                                                     setMaxPrice(value[1]);
                                                     setMinPrice(value[0]);
                                                 }}
@@ -183,9 +187,9 @@ const Activity = ({data}:Props) => {
                                     <h4>Flight length</h4>
                                     <div className="row wighet_row">
                                         <Slider range
-                                                onChange={(value) => {
-                                                   // setMaxTime(value[1]);
-                                                   // setMinTime(value[0]);
+                                                onChange={(value:any) => {
+                                                   setMaxTime(value[1]);
+                                                   setMinTime(value[0]);
                                                 }}
                                                 step={1}
                                                 trackStyle={{
@@ -206,19 +210,19 @@ const Activity = ({data}:Props) => {
                                                     backgroundImage: "white",
                                                     cursor: "pointer",
                                                 }}
-                                                min={0}
-                                                max={300}
+                                                min={minTime}
+                                                max={maxTime}
                                                 defaultValue={[ 10, 200]}
-                                                onAfterChange={(value) => {
+                                               /* onAfterChange={(value:any) => {
                                                     //setMaxTime(value[1]);
                                                     //setMinTime(value[0]);
-                                                    /*dispatch(filterCatalog({
+                                                    /!*dispatch(filterCatalog({
                                                         categoryLink, currentCity,
                                                         maxTime: value[1], minTime: value[0],
                                                         maxPrice, minPrice,
                                                         sort, rating, page
-                                                    }))*/
-                                                }}
+                                                    }))*!/
+                                                }}*/
 
                                         />
                                         <div className={s.infoSliderPanel}>
@@ -287,7 +291,7 @@ const Activity = ({data}:Props) => {
                                     <div className="row wighet_row">
                                         <div className="filter_links">
                                             <ul>
-                                                {popularCities?.map(popCity =>
+                                                {popularCities?.map((popCity:any) =>
                                                     <li key={popCity?.id}>
                                                         <Link className={`${+popCity.id && "active"}`}
                                                                  href={`/${activityLocation?.category_link}/${popCity.link}`}>
@@ -318,7 +322,7 @@ const Activity = ({data}:Props) => {
                             </div>
                         </div>
                         <div className="row row-15">
-                            {data.services.data.map(card => <ProductCard
+                            {data?.services?.data.map((card:any )=> <ProductCard
                                 key={card.id}
                                 description={card.description}
                                 id={card.id}

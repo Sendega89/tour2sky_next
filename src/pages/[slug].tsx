@@ -42,11 +42,11 @@ const DynamicPageFirstStep = ({ data }: Props) => {
     const { slug } = router.query;
     const categoryLink = router.query;
     const dispatch = useDispatch()
-    const getCategoryViewInfo = useSelector(() => getCategoriesView)
+    //const getCategoryViewInfo = useSelector(() => getCategoriesView)
 
-    const getLocations = useSelector(() => getTopLocations)
+    //const getLocations = useSelector(() => getTopLocations)
     //const changedCategory = useSelector((state) => state.directory.categoriesView)
-    const locations = useSelector((state) => state.page.topLocations)
+    const locations = useSelector((state:any) => state.page.topLocations)
     const changedCategory:Data = data
 
     useEffect(() => {
@@ -55,14 +55,14 @@ const DynamicPageFirstStep = ({ data }: Props) => {
         }*/
 
         if(changedCategory?.category?.id){
-            dispatch(getLocations(changedCategory?.category?.id))
+           // dispatch(getLocations(changedCategory?.category?.id))
         }
     }, [categoryLink,changedCategory?.category?.id])
     return ( <>
         <Head>
-            <meta name="title" content={changedCategory?.category?.seo_title}/>
-            <meta name="description" content={changedCategory?.category?.seo_description}/>
-            <meta property="og:image" content={changedCategory?.category?.seo_image?.link}/>
+            <meta name="title" content={"changedCategory?.category?.seo_title"}/>
+            <meta name="description" content={"changedCategory?.category?.seo_description"}/>
+            <meta property="og:image" content={"changedCategory?.category?.seo_image?.link"}/>
             <link rel="canonical" href={`${categoryLink.slug}`}/>
         </Head>
         <Header />
@@ -124,7 +124,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
-    const res = await fetch(`https://t2sb.rcnwd.com/api/category/${params.slug}`);
+    const res = await fetch(`https://t2sb.rcnwd.com/api/category/${params?.slug}`);
     const data = await res.json();
     return {
         props: {

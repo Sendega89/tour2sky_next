@@ -31,10 +31,10 @@ type CardProps = {
         booking_link: string
 
 }
-const ProductCard = (props: CardProps) => {
+const ProductCard = (props:any) => {
 
         const [checked, setChecked] = useState(true);
-        const handleChange = (event:HTMLInputElement) => {
+        const handleChange = () => {
             /*if (props.isAuth) {
                 setChecked(event.target.checked);
             }*/
@@ -45,7 +45,7 @@ const ProductCard = (props: CardProps) => {
                 <div className="cat_item_vn row">
                     <div className="cat_item_img">
 
-                            <Link product="[object Object]"
+                            <Link
                                   href={`/${props.categoryLink}/${props.cityLink}/${props.link}`}>
                                 <Image src={props.img?.data[0] ? props.img?.data[0] : itemImage}
                                      alt={`${props?.name || "name"}`}/>

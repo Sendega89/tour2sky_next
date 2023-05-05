@@ -9,12 +9,13 @@ import {useRouter} from "next/router";
 import image from "../../../../images/product.jpg"
 
 
-const Product = ({data}) => {
+const Product = ({data}:any) => {
     const productItemView = data.data
     debugger
     const router = useRouter();
     const { categoryLink, activityLocationLink,productLink } = router.query;
-    const adultsArray = [...Array(productItemView?.members_count).keys()]
+    // @ts-ignore
+    const adultsArray:any = [...Array(productItemView?.members_count).keys()]
     const handleChangeAdults = () => {
         // setMembers_count(+e.target.value)
     }
@@ -62,7 +63,7 @@ const Product = ({data}) => {
                                                 <span className="sel_icon">
                                                     <i>{/*<FontAwesomeIcon icon="fa-solid fa-user"/>*/}</i></span>
                                             <select onChange={handleChangeAdults}>
-                                                {adultsArray?.map((value, index)=>
+                                                {adultsArray?.map((value:any, index:number)=>
                                                     <option key={index} value={index+1}>{value+1} {value+1===1?"adult":"adults"}</option>
                                                 )}
                                             </select>
@@ -82,7 +83,7 @@ const Product = ({data}) => {
                             <div className="row pick">
                                 <div className="pick_l">
                                     <strong>Pick up location</strong>
-                                    We are located at <a href={`${productItemView?.maps_link || ""}`}>the</a>
+                                    We are located at <Link href={`${productItemView?.maps_link || ""}`}>the</Link>
                                 </div>
                                 <div className="pick_r">
 
