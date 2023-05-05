@@ -133,7 +133,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: [
             { params: { slug: "helicopter", activity:"sedona",product:"bear-wallow-run-helicopter-tour-of-sedona"}, },
-            { params: { slug: "hot-air-balloon-rides", activity:"sedona",product:"bear-wallow-run-helicopter-tour-of-sedona" } },
         ],
         fallback: true,
     };

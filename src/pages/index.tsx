@@ -8,16 +8,15 @@ import Box from '@mui/material/Box';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getEnterToProfile} from "@/redux/profile_Reducer";
-import {getHomePageInfo} from "@/redux/page_Reducer";
+import {getHomePageInfo, getTopCities} from "@/redux/page_Reducer";
 import {getCategories, getIndexStatus} from "@/redux/directory_Reducer";
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
-import {getTopCities} from "../redux/page_Reducer";
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle";
 import ServiceStart from "../components/ServiceStart/ServiceStart";
 import SubscribeForm from "../components/SubscribeBlock/SubscribeForm";
 import About from "../components/About/About";
-import {AnyAction} from "redux";
+
 
 /*const inter = Inter({ subsets: ['latin'] })*/
 
@@ -28,7 +27,7 @@ import {AnyAction} from "redux";
 export default function Home() {
   const categoriesInMenu = useSelector((state:any) => state.directory.categoriesInMenu);
   const homePageInfo = useSelector((state:any) => state.page.homePageSEO);
-  const dispatch:any = useDispatch()
+  const dispatch:any = useDispatch();
   const getEnterProfile = useSelector(() => getEnterToProfile);
   const getCities = useSelector(() => getTopCities);
   const getIndexStatuses = useSelector(() => getIndexStatus);
