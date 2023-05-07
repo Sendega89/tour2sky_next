@@ -60,6 +60,7 @@ export default function Home() {
   return (
     <>
       <Head>
+        <title>Main</title>
         <meta name="title" content={homePageInfo?.title}/>
         <meta name="description" content={homePageInfo?.description}/>
         <meta property="og:image" content={homePageInfo?.image}/>

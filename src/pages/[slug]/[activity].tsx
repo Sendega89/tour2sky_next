@@ -331,7 +331,10 @@ const Activity = ({data}:any) => {
                                 cityLink={data?.city_link}
                                 name={card.name}
                                 booking_link={card.booking_link}
-                                rating={card.rating} price={card.price} duration={card.duration} img={card.images}
+                                rating={card.rating}
+                                price={card.price}
+                                duration={card.duration}
+                                img={card.images}
                             />)}
                         </div>
                         <div className="row">

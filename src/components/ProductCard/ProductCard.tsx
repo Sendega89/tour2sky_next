@@ -45,9 +45,9 @@ const ProductCard = (props:any) => {
                 <div className="cat_item_vn row">
                     <div className="cat_item_img">
 
-                            <Link
+                            <Link style={{minWidth:"100%"}}
                                   href={`/${props.categoryLink}/${props.cityLink}/${props.link}`}>
-                                <Image src={props.img?.data[0] ? props.img?.data[0] : itemImage}
+                                <Image layout={"fill"} src={props.img?.data[0]?.link ? props.img?.data[0]?.link : itemImage}
                                      alt={`${props?.name || "name"}`}/>
                             </Link>
                             {/*<Link href={`${props?.link}`}>

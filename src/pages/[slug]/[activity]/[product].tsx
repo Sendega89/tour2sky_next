@@ -3,15 +3,14 @@ import {GetStaticPaths, GetStaticProps} from "next";
 import Link from "next/link";
 import RatingTour from "@/components/Rating/RatingTour";
 import SlickSlider from "../../../components/SlickSlider/SlickSlider"
-import BestCities from "@/components/BestCities/BestCities";
+//import BestCities from "@/components/BestCities/BestCities";
 import ProductAccordion from "@/components/ProductAccordion/ProductAccordion";
 import {useRouter} from "next/router";
 import image from "../../../../images/product.jpg"
 
 
 const Product = ({data}:any) => {
-    const productItemView = data.data
-    debugger
+    const productItemView = data?.data
     const router = useRouter();
     const { categoryLink, activityLocationLink,productLink } = router.query;
     // @ts-ignore

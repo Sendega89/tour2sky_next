@@ -1,6 +1,7 @@
+import React from "react";
 import s from "./Accordion.module.css"
 import {Accordion, AccordionDetails, AccordionSummary} from "@mui/material";
-import React from "react";
+
 
 
 
