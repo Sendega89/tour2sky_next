@@ -41,7 +41,7 @@ type Props = {
 
 const Activity = ({data}:any) => {
     let activityLocation = data
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const router = useRouter();
     const { currentLink, currentCity } = router.query;
     const [minTime, setMinTime] = useState(14);
@@ -51,7 +51,7 @@ const Activity = ({data}:any) => {
    // const pagination = useSelector((state) => state.productCards.pagination);
    // const isAuth = useSelector((state:any) => state.profilePage.isAuth);
    // const isFavoriteItem = useSelector((state) => state.myAccount.isFavoriteItem);
-    const getPopularCities = useSelector(() => getPopular_city);
+    //const getPopularCities = useSelector(() => getPopular_city);
     //const activityInLocation = useSelector(() => getActivityLocationSpecialLink);
     //const filterCatalog = useSelector(() => getFilteredCatalog);
     //const activityLocation = useSelector((state) => state.activityLocation.activityLocationView);
@@ -95,6 +95,7 @@ const Activity = ({data}:any) => {
 
     return (<>
         <Head>
+
             <meta name="title" content={activityLocation?.seo_title}/>
             <meta name="description" content={activityLocation?.seo_description}/>
             <meta property="og:image" content={activityLocation?.seo_image?.link}/>
