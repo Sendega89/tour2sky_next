@@ -1,6 +1,5 @@
-
-import {useNavigate} from "react-router-dom";
-
+import { set, get } from 'local-storage';
+import {instance} from "@/pages/api/api";
 
 
 const SET_CLIENT_PROFILE = "tour2sky/profile/SET_CLIENT_PROFILE";
@@ -103,7 +102,6 @@ const profile_Reducer = (state = initialState, action) => {
             }
         }
         case SET_AUTH_PROFILE: {
-
             return {
                 ...state,
                 isAuth: true
@@ -116,11 +114,10 @@ const profile_Reducer = (state = initialState, action) => {
             }
         }
         case SET_PROFILE_INFO: {
-
             return {
                 ...state,
                 ...action.data,
-                profileInfo: action.data.social_profiles
+                profileInfo: action.data?.social_profiles
             }
         }
         case SET_ORDERS_INFO: {
@@ -136,7 +133,6 @@ const profile_Reducer = (state = initialState, action) => {
                 myCreateOrders:action.data
             }
         }case OUT_CLIENT_PROFILE: {
-debugger
             return {
                 ...state,
                 isAuth:false
@@ -152,35 +148,26 @@ export const setAuthProfile = (data) => ({type: SET_AUTH_PROFILE, data});
 export const setProfileInfo = (data) => ({type: SET_PROFILE_INFO, data});
 export const setUpdateProfile = (data) => ({type: UPDATE_CLIENT_PROFILE, data});
 export const setOrders = (data) => ({type: SET_ORDERS_INFO, data});
-export const setCreateOrder = (data) => ({type: SET_CREATE_ORDER, data});
 export const outClientProfile = () => ({type:OUT_CLIENT_PROFILE});
 
 
-/*instance.interceptors.request.use(config=>{
-
-    if(!config.headers){
-        let navigate = useNavigate()
-        return navigate("/authorization")}
-    else {
-        return config
-    }
-})*/
 
 
 
 
 export const login = (email, password,setStatus) =>async (dispatch) => {
     try {
+
         const response = await instance.post(`auth/login`,{email,password});
         dispatch(setClientProfile(response.data));
-        localStorage.setItem('jwt', response.data.meta.token);
-        localStorage.setItem('role', response.data.role);
-        localStorage.setItem('user_id', response.data.id);
+        set('jwt', response.data.meta.token);
+        set('role', response.data.role);
+        set('user_id', response.data.id);
         dispatch(setAuthProfile())
         setStatus({})
     } catch (error) {
         let errors = error.response;
-        setStatus({error: errors.data.error})
+        setStatus({error: errors?.data?.error})
     }
 };
 
@@ -192,15 +179,6 @@ export const getProfileInfo = () => async (dispatch) => {
 
     }
 }
-export const getPartnerProfile = () => async (dispatch) => {
-    try {
-        let response = await authAPI.partnerMe();
-        dispatch(setProfileInfo(response.data))
-    } catch (e) {
-
-    }
-}
-
 export const getUpdateProfile = (updateOption,setStatus) => async (dispatch) => {
     try {
         let response = await myAccountAPI.updateProfileInfo(updateOption)
@@ -211,16 +189,20 @@ export const getUpdateProfile = (updateOption,setStatus) => async (dispatch) => 
         if(errors.status===422){
             setStatus({error: errors.data.errors})}
     }
-
 }
-export const getOrders = (token,page,service_name,status) => async (dispatch) => {
+export const getOutClientProfile = (dispatch) => () => {
+    localStorage.clear()
+    dispatch(outClientProfile())
+}
+export const getEnterToProfile = () => (dispatch) => {
+    dispatch(setAuthProfile())
+}
+/*export const getOrders = (token,page,service_name,status) => async (dispatch) => {
     let response = await myAccountAPI.getProfileOrders(token, page, service_name, status)
         dispatch(setOrders(response.data));
 }
 export const getCreateNewOrder = (ordersInfo) => async () => {
      await myAccountAPI.getCreateNewOrder(ordersInfo)
-
-
 
 }
 export const getDeleteClientProfile = () => async (dispatch) => {
@@ -241,17 +223,14 @@ export const getUpdatePartnerInfo = (updateOption,setStatus) => async (dispatch)
         if(errors.status===422){
             setStatus({error: errors.data.errors})}
     }
+}*/
+/*export const getPartnerProfile = () => async (dispatch) => {
+    try {
+        let response = await authAPI.partnerMe();
+        dispatch(setProfileInfo(response.data))
+    } catch (e) {
 
-}
+    }
+}*/
 
-export const getOutClientProfile = (dispatch) => () => {
-    localStorage.clear()
-        dispatch(outClientProfile())
-}
-export const getEnterToProfile = () => (dispatch) => {
-  /*if(JWTToken) {
-
-  }*/dispatch(setAuthProfile())
-
-}
 export default profile_Reducer

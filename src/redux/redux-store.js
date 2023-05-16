@@ -5,7 +5,9 @@ import profile_Reducer from "@/redux/profile_Reducer";
 import directory_Reducer from "@/redux/directory_Reducer";
 import location_Reducer from "@/redux/location_Reducer";
 
+export const StateType = {
 
+}
 
 
 let reducers = combineReducers({

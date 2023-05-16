@@ -7,49 +7,56 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getEnterToProfile} from "@/redux/profile_Reducer";
-import {getHomePageInfo, getTopCities} from "@/redux/page_Reducer";
-import {getCategories, getIndexStatus} from "@/redux/directory_Reducer";
-import Header from "../components/Header/Header"
+//import {getEnterToProfile} from "@/redux/profile_Reducer";
+import {getTopCities} from "@/redux/page_Reducer";
+import {getIndexStatus} from "@/redux/directory_Reducer";
 import Footer from "../components/Footer/Footer"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle";
 import ServiceStart from "../components/ServiceStart/ServiceStart";
 import SubscribeForm from "../components/SubscribeBlock/SubscribeForm";
 import About from "../components/About/About";
-
-
-/*const inter = Inter({ subsets: ['latin'] })*/
-
+import Header from "@/components/Header/Header";
 
 
 
 
-export default function Home() {
+type Data = {
+  seo:{
+  title:string
+  description:string
+  image:HTMLImageElement | null
+}
+}
+type Props = {
+  seo: Data;
+}
+
+
+
+
+
+export default function Home({data}: Props) {
+
   const categoriesInMenu = useSelector((state:any) => state.directory.categoriesInMenu);
-  const homePageInfo = useSelector((state:any) => state.page.homePageSEO);
   const dispatch:any = useDispatch();
-  const getEnterProfile = useSelector(() => getEnterToProfile);
+  /*const getEnterProfile = useSelector(() => getEnterToProfile);*/
   const getCities = useSelector(() => getTopCities);
   const getIndexStatuses = useSelector(() => getIndexStatus);
-  const getCategoryInMenu = useSelector(() => getCategories);
-  const getHomePage = useSelector(() => getHomePageInfo);
-  const isAuth = useSelector((state:any) => state.profilePage.isAuth);
+
   const placesList = useSelector((state:any) => state.page.topCities);
-  let catId = categoriesInMenu.find((item:any, index:number) => index === 0);
+  let catId = categoriesInMenu.find((item:{}, index:number) => index === 0);
   const [categoryLink, setCategoryLink] = useState(catId?.link);
   const [value, setValue] = useState();
 
 
   useEffect(() => {
-    dispatch(getHomePage())
-    dispatch(getEnterProfile())
+    /*dispatch(getEnterProfile())*/
     dispatch(getIndexStatuses())
-    dispatch(getCategoryInMenu())
 
     if (value || catId?.id) {
       dispatch(getCities(value || catId?.id))
     }
-  },  [isAuth,categoryLink, catId?.id, catId?.link])
+  },  [categoryLink, catId?.id, catId?.link])
 
 
   const handleChange = (event:any, newValue:any) => {
@@ -61,9 +68,9 @@ export default function Home() {
     <>
       <Head>
         <title>Main</title>
-        <meta name="title" content={homePageInfo?.title}/>
-        <meta name="description" content={homePageInfo?.description}/>
-        <meta property="og:image" content={homePageInfo?.image}/>
+        <meta name="title" content={data?.seo?.title}/>
+        <meta name="description" content={data?.seo?.description}/>
+        <meta property="og:image" content={data?.seo?.image}/>
         <link rel="canonical" href="https://t2s.rcnwd.com/"/>
       </Head>
       <Header />
@@ -90,11 +97,13 @@ export default function Home() {
                     {categoriesInMenu?.map((c:any) =>
                         // @ts-ignore
                         <Tab sx={{
-                          bgcolor: "#ECF0F1",
+                          backgroundImage:"none",
+                          backgroundColor: "#ECF0F1",
                           marginRight: "10px",
                           borderTopLeftRadius: "8px",
                           borderTopRightRadius: "8px",
                           '&.Mui-selected': {
+                            backgroundImage:"none",
                             color: "white",
                             backgroundColor: '#2980B9',
                             borderBottom: "none"
@@ -120,3 +129,12 @@ export default function Home() {
     </>
   )
 }
+export const getStaticProps = async () => {
+  const res = await fetch(`https://t2sb.rcnwd.com/api/page/home`);
+  const data = await res.json();
+  return {
+    props: {
+      data
+    },
+  };
+};

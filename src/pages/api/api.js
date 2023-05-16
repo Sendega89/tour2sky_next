@@ -59,9 +59,6 @@ export const pageAPI = {
     getTopLocationsList(id) {
         return instance.get(`category/${id}/uniq-last-locations`)
     },
-    getHomePage() {
-        return instance.get(`page/home`)
-    }
 };
 
 export const subscribe = {

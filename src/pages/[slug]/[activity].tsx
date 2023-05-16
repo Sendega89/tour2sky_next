@@ -8,6 +8,8 @@ import {getPopular_city} from "@/redux/location_Reducer";
 import Slider from "rc-slider";
 import Link from "next/link";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 type Data = {
     id: number;
@@ -41,7 +43,7 @@ type Props = {
 
 const Activity = ({data}:any) => {
     let activityLocation = data
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const router = useRouter();
     const { currentLink, currentCity } = router.query;
     const [minTime, setMinTime] = useState(14);
@@ -51,7 +53,7 @@ const Activity = ({data}:any) => {
    // const pagination = useSelector((state) => state.productCards.pagination);
    // const isAuth = useSelector((state:any) => state.profilePage.isAuth);
    // const isFavoriteItem = useSelector((state) => state.myAccount.isFavoriteItem);
-    //const getPopularCities = useSelector(() => getPopular_city);
+    const getPopularCities = useSelector(() => getPopular_city);
     //const activityInLocation = useSelector(() => getActivityLocationSpecialLink);
     //const filterCatalog = useSelector(() => getFilteredCatalog);
     //const activityLocation = useSelector((state) => state.activityLocation.activityLocationView);
@@ -81,12 +83,12 @@ const Activity = ({data}:any) => {
     }
     useEffect(() => {
         //dispatch(activityInLocation(categoryLink, currentCity))
-        /*if (activityLocation?.category_id && activityLocation?.region_id) {
+        if (activityLocation?.category_id && activityLocation?.region_id) {
             dispatch(getPopularCities(
                 activityLocation.category_id,
                 activityLocation.region_id
             ))
-        }*/
+        }
         /*dispatch(filterCatalog({
             categoryLink, currentCity,activityLocationLink:activityLocation?.link,
             sort, rating, page,
@@ -95,12 +97,12 @@ const Activity = ({data}:any) => {
 
     return (<>
         <Head>
-
             <meta name="title" content={activityLocation?.seo_title}/>
             <meta name="description" content={activityLocation?.seo_description}/>
             <meta property="og:image" content={activityLocation?.seo_image?.link}/>
             <link rel="canonical" href={`${currentLink}`}/>
         </Head>
+        <Header />
         <div className="catalog">
             <div className="header_title"
                  style={{backgroundImage: `url(${activityLocation?.seo_image ? activityLocation?.seo_image.link :"" })`}}>
@@ -357,6 +359,7 @@ const Activity = ({data}:any) => {
                 </div>
             </div>
         </div>
+        <Footer />
 </>);
 };
 

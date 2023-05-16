@@ -1,15 +1,18 @@
-/*import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";*/
 import Link from "next/link";
 
 const HeaderAuthorization = () => {
-    return  <div className="header_login no_login">
+    return <div className="header_login no_login">
         <div className="login_drop popup">
-            <Link href="/authorization" className="authorization" data-effect="mfp-zoom-in">
+            <Link href="/authorization" className="authorization">
               <span>
-                  <i>{/*<FontAwesomeIcon icon="fa-solid fa-unlock-alt" aria-hidden="true" pull="left"/>*/}</i>
-                Authorization
+                  <i>
+                      <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.6597 9.84631C13.4328 9.61533 13.1574 9.50004 12.8332 9.50004H3.88879V5.54175C3.88879 4.66746 4.19267 3.92125 4.80035 3.30273C5.40808 2.68433 6.14124 2.37507 7.00011 2.37507C7.85889 2.37507 8.59218 2.68429 9.19965 3.30273C9.80737 3.92125 10.1113 4.66751 10.1113 5.54175C10.1113 5.75608 10.1882 5.94161 10.342 6.09827C10.4961 6.25498 10.6784 6.33336 10.8888 6.33336H11.667C11.8775 6.33336 12.0597 6.25498 12.2139 6.09827C12.3674 5.94161 12.4446 5.75608 12.4446 5.54175C12.4446 4.01596 11.9119 2.71119 10.8466 1.62669C9.78115 0.542143 8.49892 0 7.00011 0C5.50117 0 4.21907 0.542143 3.15354 1.62665C2.08819 2.71102 1.55551 4.01592 1.55551 5.5417V9.5H1.16666C0.842689 9.5 0.567156 9.61555 0.340277 9.84626C0.113397 10.077 0 10.3575 0 10.6874V17.8125C0 18.1425 0.11344 18.4229 0.340277 18.6538C0.567156 18.8845 0.842689 19 1.16666 19H12.8332C13.1574 19 13.4331 18.8845 13.6597 18.6538C13.8864 18.4229 14 18.1425 14 17.8125V10.6874C14.0002 10.3576 13.8867 10.0773 13.6597 9.84631Z"
+                                fill="#33CCCC"/>
+                      </svg>
+                    </i>Authorization
               </span>
-            </Link >
+            </Link>
         </div>
     </div>
 

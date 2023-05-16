@@ -3,22 +3,30 @@ import HeaderNavigation from "./headerComponents/HeaderNavigation";
 import HeaderAuthorization from "./headerComponents/HeaderAuthorization";
 import s from "./Header.module.css"
 import HeaderAutorized from "./headerComponents/HeaderAutorized";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getCategories} from "@/redux/directory_Reducer";
+import {useEffect} from "react";
 
 
 
 
 
 const Header = () => {
-const isAuth = useSelector((state)=> state.profilePage.isAuth);
+    const isAuth = useSelector((state)=> state.profilePage.isAuth);
+    const getCategoryInMenu = useSelector(() => getCategories);
+    const dispatch = useDispatch();
 
+
+    useEffect(()=>{
+        dispatch(getCategoryInMenu())
+    },[isAuth])
     return <header className={s.header}>
 
                 <div className={`${s.myHeader} container`}>
-                   <div className={s.logo}>
+                   <div>
                         <Logo />
                     </div>
-                   <div className={s.navigation}>
+                   <div>
                        <HeaderNavigation />
                    </div>
                    <div className={s.auth}>

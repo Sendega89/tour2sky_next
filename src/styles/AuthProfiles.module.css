@@ -1,0 +1,70 @@
+/*
+.error {
+    border-color: red;
+    color: red;
+
+}
+.error::placeholder {
+
+}
+.error span {
+    color: red;
+}
+.authorizationForm .error {
+    margin-bottom: 20px;
+}
+.authContainer {
+    display: flex;
+    align-items: center;
+    min-height: 600px;
+
+}
+.authContainer button,
+.authContainerr input[type=submit],
+.btn {
+    max-height: 65px;
+    height: 65px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22%;
+    border: none;
+    padding: 20px 40px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.34);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 26px;
+    text-align: center;
+    color: #ffffff;
+    object-fit: contain;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 16px;
+
+    background-image: linear-gradient(288deg, #33cccc, #2980b9);
+}
+
+button:hover, .btn:hover, input[type=submit] {
+    background-image: linear-gradient(288deg, #2980b9, #33cccc);
+    text-decoration: none !important;
+    cursor: pointer;
+    color: white;
+}
+
+
+button, input[type="submit"], a, a img:hover, .owl-nav div, #back-to-top:hover, .soc .row a:hover svg, .the_best .tab_content .owl-item a span, .blog_item .post_big:before, .post_smoll_item a:hover:before {
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.captcha {
+   margin-left: 70px;
+}
+.createComplete {
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    color: white;
+    background-color: #295673;
+}
+*/

@@ -9,7 +9,7 @@ import BestCities from "../components/BestCities/BestCities"
 import About from "../components/About/About"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
- import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 
 type Data = {

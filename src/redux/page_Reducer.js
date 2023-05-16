@@ -16,12 +16,7 @@ let initialState = {
 const page_Reducer = (state=initialState,action)=>{
 
     switch (action.type) {
-        case SET_PAGE_HOME:{
-            return {
-                ...state,
-                homePageSEO:action.data.seo
-            }
-        }
+
         case SET_ACTIVITY_LOCATION_LIST:{
             return {
                 ...state,
@@ -52,7 +47,7 @@ const page_Reducer = (state=initialState,action)=>{
     }
 }
 
-export const setHomePageInfo = (data) =>({type:SET_PAGE_HOME,data});
+;
 export const setActivityLocationList = (data) =>({type:SET_ACTIVITY_LOCATION_LIST,data});
 export const setActivityLocationView = (data) =>({type:SET_ACTIVITY_LOCATION_VIEW,data});
 export const setTopCities = (data) =>({type:SET_TOP_CITIES,data});
@@ -65,13 +60,7 @@ export const getActivityLocationList = () => async (dispatch) => {
     } catch (e) {
     }
 }
-export const getHomePageInfo = () => async (dispatch) => {
-    try {
-        let response = await pageAPI.getHomePage();
-        dispatch(setHomePageInfo(response.data))
-    } catch (e) {
-    }
-}
+
 
 export const getActivityLocationView = (searchParam) => async (dispatch) => {
     try {
