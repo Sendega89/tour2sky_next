@@ -1,4 +1,4 @@
-/*
+
 .error {
     border-color: red;
     color: red;
@@ -10,6 +10,13 @@
 .error span {
     color: red;
 }
+.authContainer {
+    display: flex;
+    align-items: center;
+    min-height: 600px;
+
+}
+/*
 .authorizationForm .error {
     margin-bottom: 20px;
 }

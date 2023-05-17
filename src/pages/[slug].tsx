@@ -39,11 +39,9 @@ type Props = {
 
 const DynamicPageFirstStep = ({ data }: Props) => {
     const router = useRouter();
-    const { slug } = router.query;
     const categoryLink = router.query;
-    const dispatch = useDispatch()
-    //const getCategoryViewInfo = useSelector(() => getCategoriesView)
 
+    //const getCategoryViewInfo = useSelector(() => getCategoriesView)
     //const getLocations = useSelector(() => getTopLocations)
     //const changedCategory = useSelector((state) => state.directory.categoriesView)
     const locations = useSelector((state:any) => state.page.topLocations)
@@ -60,9 +58,9 @@ const DynamicPageFirstStep = ({ data }: Props) => {
     }, [categoryLink,changedCategory?.category?.id])
     return ( <>
         <Head>
-            <meta name="title" content={"changedCategory?.category?.seo_title"}/>
-            <meta name="description" content={"changedCategory?.category?.seo_description"}/>
-            <meta property="og:image" content={"changedCategory?.category?.seo_image?.link"}/>
+            <meta name="title" content={data?.category?.seo_title}/>
+            <meta name="description" content={data?.category?.seo_description}/>
+            <meta property="og:image" content={data?.category?.seo_image?.link}/>
             <link rel="canonical" href={`${categoryLink.slug}`}/>
         </Head>
         <Header />

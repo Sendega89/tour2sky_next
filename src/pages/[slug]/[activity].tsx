@@ -97,9 +97,9 @@ const Activity = ({data}:any) => {
 
     return (<>
         <Head>
-            <meta name="title" content={activityLocation?.seo_title}/>
-            <meta name="description" content={activityLocation?.seo_description}/>
-            <meta property="og:image" content={activityLocation?.seo_image?.link}/>
+            <meta name="title" content={data?.seo_title}/>
+            <meta name="description" content={data?.seo_description}/>
+            <meta property="og:image" content={data?.seo_image?.link}/>
             <link rel="canonical" href={`${currentLink}`}/>
         </Head>
         <Header />

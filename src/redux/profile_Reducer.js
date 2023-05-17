@@ -9,7 +9,9 @@ const SET_PROFILE_INFO = "tour2sky/profile/SET_PROFILE_INFO";
 const SET_ORDERS_INFO = "tour2sky/profile/SET_ORDERS_INFO";
 const SET_CREATE_ORDER = "tour2sky/profile/SET_CREATE_ORDERS";
 const OUT_CLIENT_PROFILE = "tour2sky/profile/OUT_CLIENT_PROFILE";
-
+const SET_USER_DATA = "tour2sky-project/auth/SET_USER_DATA";
+const CREATE_SUCCESS = "tour2sky-project/auth/CREATE_SUCCESS";
+const SET_USER_TYPE = "tour2sky-project/auth/SET_USER_TYPE";
 
 const initialState = {
     profileInfo:[],
@@ -89,7 +91,16 @@ const initialState = {
         }
     },
     myCreateOrders:{},
-    role:get('role')
+    role:get('role'),
+    statusObject: {
+        id: null,
+        name: ""
+    },
+    typeObject: {
+        id: null,
+        name: ""
+    },
+    createdSuccess:false
 }
 
 const profile_Reducer = (state = initialState, action) => {
@@ -138,6 +149,25 @@ const profile_Reducer = (state = initialState, action) => {
                 isAuth:false
             }
         }
+        case SET_USER_DATA:{
+            return {
+                ...state,
+                ...action.data,
+            }
+        }
+        case CREATE_SUCCESS:{
+
+            return {...state,
+                createdSuccess:true
+            }
+        }
+        case SET_USER_TYPE:{
+
+            return {
+                ...state,
+                usertype:action.data.data
+            }
+        }
 
         default:
             return state
@@ -149,7 +179,9 @@ export const setProfileInfo = (data) => ({type: SET_PROFILE_INFO, data});
 export const setUpdateProfile = (data) => ({type: UPDATE_CLIENT_PROFILE, data});
 /*export const setOrders = (data) => ({type: SET_ORDERS_INFO, data});*/
 export const outClientProfile = () => ({type:OUT_CLIENT_PROFILE});
-
+export const setUserData = (data) =>({type:SET_USER_DATA,data});//this is Action Creator
+export const setCreatedSuccess = () =>({type: CREATE_SUCCESS});//this is Action Creator
+export const setUsertype = (data) =>({type:SET_USER_TYPE,data});//this is Action Creator
 
 
 
@@ -169,7 +201,23 @@ export const login = (email, password,setStatus) =>async (dispatch) => {
         setStatus({error: errors?.data?.error})
     }
 };
-
+export const getUsertype = () => async (dispatch) => {
+    let response = await authAPI.getType();
+    dispatch(setUsertype(response.data))
+}
+export const createAccount = (registerData,setStatus) => async (dispatch) => {
+    try {
+        let response = await authAPI.register(registerData);
+        dispatch(setCreatedSuccess());
+        dispatch(setUserData(response.data));
+        setStatus({})
+    }
+    catch(error) {
+        let errors = error.response;
+        if(errors.status===422){
+            setStatus({error: errors.data.errors})}
+    }
+}
 export const getProfileInfo = () => async (dispatch) => {
     try {
         let response = await authAPI.me();
