@@ -1,5 +1,5 @@
-import { set, get } from 'local-storage';
-import {instance} from "@/pages/api/api";
+import { set, get, clear } from 'local-storage';
+import {authAPI, instance} from "@/pages/api/api";
 
 
 const SET_CLIENT_PROFILE = "tour2sky/profile/SET_CLIENT_PROFILE";
@@ -13,7 +13,7 @@ const OUT_CLIENT_PROFILE = "tour2sky/profile/OUT_CLIENT_PROFILE";
 
 const initialState = {
     profileInfo:[],
-    isAuth: false,
+    isAuth: get('jwt') && true,
     myOrders: [
         {
             id: 1,
@@ -89,7 +89,7 @@ const initialState = {
         }
     },
     myCreateOrders:{},
-    /*role:localStorage.getItem('role')*/
+    role:get('role')
 }
 
 const profile_Reducer = (state = initialState, action) => {
@@ -147,7 +147,7 @@ export const setClientProfile = (data) => ({type: SET_CLIENT_PROFILE, data});
 export const setAuthProfile = (data) => ({type: SET_AUTH_PROFILE, data});
 export const setProfileInfo = (data) => ({type: SET_PROFILE_INFO, data});
 export const setUpdateProfile = (data) => ({type: UPDATE_CLIENT_PROFILE, data});
-export const setOrders = (data) => ({type: SET_ORDERS_INFO, data});
+/*export const setOrders = (data) => ({type: SET_ORDERS_INFO, data});*/
 export const outClientProfile = () => ({type:OUT_CLIENT_PROFILE});
 
 
@@ -157,7 +157,6 @@ export const outClientProfile = () => ({type:OUT_CLIENT_PROFILE});
 
 export const login = (email, password,setStatus) =>async (dispatch) => {
     try {
-
         const response = await instance.post(`auth/login`,{email,password});
         dispatch(setClientProfile(response.data));
         set('jwt', response.data.meta.token);
@@ -191,7 +190,7 @@ export const getUpdateProfile = (updateOption,setStatus) => async (dispatch) => 
     }
 }
 export const getOutClientProfile = (dispatch) => () => {
-    localStorage.clear()
+    clear()
     dispatch(outClientProfile())
 }
 export const getEnterToProfile = () => (dispatch) => {

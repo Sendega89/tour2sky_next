@@ -43,7 +43,7 @@ type Props = {
 
 const Activity = ({data}:any) => {
     let activityLocation = data
-    const dispatch = useDispatch();
+    const dispatch:any = useDispatch();
     const router = useRouter();
     const { currentLink, currentCity } = router.query;
     const [minTime, setMinTime] = useState(14);

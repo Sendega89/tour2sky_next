@@ -16,30 +16,27 @@ import ServiceStart from "../components/ServiceStart/ServiceStart";
 import SubscribeForm from "../components/SubscribeBlock/SubscribeForm";
 import About from "../components/About/About";
 import Header from "@/components/Header/Header";
-
-
-
+import {getEnterToProfile} from "@/redux/profile_Reducer";
+import {get} from "local-storage";
 
 type Data = {
   seo:{
   title:string
   description:string
-  image:HTMLImageElement | null
+
 }
 }
 type Props = {
-  seo: Data;
+  data: Data;
+
 }
 
 
-
-
-
-export default function Home({data}: Props) {
-
+export default function Home({data}:Props) {
+  /*const [isAuth ,setIsAuth] = useState(false)*/
   const categoriesInMenu = useSelector((state:any) => state.directory.categoriesInMenu);
   const dispatch:any = useDispatch();
-  /*const getEnterProfile = useSelector(() => getEnterToProfile);*/
+ // const getEnterProfile = useSelector(() => getEnterToProfile);
   const getCities = useSelector(() => getTopCities);
   const getIndexStatuses = useSelector(() => getIndexStatus);
 
@@ -50,7 +47,11 @@ export default function Home({data}: Props) {
 
 
   useEffect(() => {
-    /*dispatch(getEnterProfile())*/
+    /*const auth = get('jwt') && true;
+    if(auth){
+      setIsAuth(true)
+    }*/
+   /* dispatch(getEnterProfile())*/
     dispatch(getIndexStatuses())
 
     if (value || catId?.id) {
@@ -70,7 +71,7 @@ export default function Home({data}: Props) {
         <title>Main</title>
         <meta name="title" content={data?.seo?.title}/>
         <meta name="description" content={data?.seo?.description}/>
-        <meta property="og:image" content={data?.seo?.image}/>
+        {/*<meta property="og:image" content={data?.seo?.image}/>*/}
         <link rel="canonical" href="https://t2s.rcnwd.com/"/>
       </Head>
       <Header />
@@ -138,3 +139,4 @@ export const getStaticProps = async () => {
     },
   };
 };
+

@@ -5,23 +5,33 @@ import s from "./Header.module.css"
 import HeaderAutorized from "./headerComponents/HeaderAutorized";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategories} from "@/redux/directory_Reducer";
-import {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {get} from "local-storage";
+
+
 
 
 
 
 
 const Header = () => {
-    const isAuth = useSelector((state)=> state.profilePage.isAuth);
+    const [isAuth ,setIsAuth] = useState(false)
     const getCategoryInMenu = useSelector(() => getCategories);
-    const dispatch = useDispatch();
+    const dispatch:any = useDispatch();
+
 
 
     useEffect(()=>{
+        const auth = get('jwt') && true;
+        if(auth){
+            setIsAuth(true)
+        }
         dispatch(getCategoryInMenu())
-    },[isAuth])
-    return <header className={s.header}>
+    },[])
 
+    return (
+        <>
+    <header className={s.header}>
                 <div className={`${s.myHeader} container`}>
                    <div>
                         <Logo />
@@ -31,13 +41,16 @@ const Header = () => {
                    </div>
                    <div className={s.auth}>
                        {isAuth ?
-                           <HeaderAutorized />
+                            <HeaderAutorized />
                            :
-                           <HeaderAuthorization />}
+                            <HeaderAuthorization />
+                       }
                    </div>
 
                 </div>
     </header>
-
+        </>
+)
 }
 export default Header
+

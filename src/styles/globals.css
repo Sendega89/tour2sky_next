@@ -857,13 +857,14 @@ button[type='submit'].loading {
 }
 
 .white-popup {
+  caret-color: transparent;
   position: relative;
   background: #fff;
   padding: 50px 60px;
   width: 600px;
   max-width: 100%;
   text-align: center;
-  margin: 0 auto;
+  margin: 50px auto;
   border-radius: 16px;
   box-shadow: 0 18px 18px 0 rgba(10, 31, 68, 0.12), 0 0 1px 0 rgba(10, 31, 68, 0.1);
   animation: open 0.5s;
