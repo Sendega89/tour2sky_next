@@ -363,12 +363,11 @@ const Activity = ({data}:any) => {
 </>);
 };
 
-
 export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths: [
-            { params: { slug: "helicopter", activity:"sedona"}, },
+            { params: { slug: "helicopter", activity:"phoenix"}, },
             { params: { slug: "hot-air-balloon-rides", activity:"sedona" } },
         ],
         fallback: true,

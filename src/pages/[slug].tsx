@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import {useDispatch, useSelector} from "react-redux";
-import {getCategories, getCategoriesView} from "@/redux/directory_Reducer";
-import {getTopLocations} from "@/redux/page_Reducer";
+import { useSelector} from "react-redux";
+//import {getCategories, getCategoriesView} from "@/redux/directory_Reducer";
+//import {getTopLocations} from "@/redux/page_Reducer";
 import React, {useEffect} from "react";
 import Head from "next/head";
 import HomeSwiper from "../components/HomeSwiper/HomeSwiper"
@@ -37,7 +37,10 @@ type Props = {
     data: Data;
 }
 
+
+
 const DynamicPageFirstStep = ({ data }: Props) => {
+
     const router = useRouter();
     const categoryLink = router.query;
 
@@ -62,6 +65,7 @@ const DynamicPageFirstStep = ({ data }: Props) => {
             <meta name="description" content={data?.category?.seo_description}/>
             <meta property="og:image" content={data?.category?.seo_image?.link}/>
             <link rel="canonical" href={`${categoryLink.slug}`}/>
+            <title>Home</title>
         </Head>
         <Header />
         <div className="section">
@@ -110,14 +114,14 @@ const DynamicPageFirstStep = ({ data }: Props) => {
         <Footer />
 </> );
 };
-export const getStaticPaths: GetStaticPaths = async () => {
 
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const res:any = await fetch(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+    const paths =await res?.data?.map((e:{link:string})=>{params: { slug:e.link }})
     return {
-        paths: [
-            { params: { slug: "helicopter" } },
-            { params: { slug: "hot-air-balloon-rides" } },
-        ],
-        fallback: true,
+        paths:paths || [],
+        fallback:false
     };
 };
 
