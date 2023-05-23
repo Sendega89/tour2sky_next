@@ -16,8 +16,7 @@ import ServiceStart from "../components/ServiceStart/ServiceStart";
 import SubscribeForm from "../components/SubscribeBlock/SubscribeForm";
 import About from "../components/About/About";
 import Header from "@/components/Header/Header";
-import {getEnterToProfile} from "@/redux/profile_Reducer";
-import {get} from "local-storage";
+
 
 type Data = {
   seo:{
@@ -69,9 +68,9 @@ export default function Home({data}:Props) {
     <>
       <Head>
         <title>Main</title>
-        <meta name="title" content={data?.seo?.title}/>
-        <meta name="description" content={data?.seo?.description}/>
-        {/*<meta property="og:image" content={data?.seo?.image}/>*/}
+        <meta name="title" content={data?.seo?.title || ""}/>
+        <meta name="description" content={data?.seo?.description || ""}/>
+       {/* <meta property="og:image" content={data?.seo?.image}/>*/}
         <link rel="canonical" href="https://t2s.rcnwd.com/"/>
       </Head>
       <Header />

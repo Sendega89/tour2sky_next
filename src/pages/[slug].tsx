@@ -9,7 +9,7 @@ import BestCities from "../components/BestCities/BestCities"
 import About from "../components/About/About"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths } from "next";
 
 
 type Data = {
@@ -61,9 +61,9 @@ const DynamicPageFirstStep = ({ data }: Props) => {
     }, [categoryLink,changedCategory?.category?.id])
     return ( <>
         <Head>
-            <meta name="title" content={data?.category?.seo_title}/>
-            <meta name="description" content={data?.category?.seo_description}/>
-            <meta property="og:image" content={data?.category?.seo_image?.link}/>
+            <meta name="title" content={data?.category?.seo_title || "title"}/>
+            <meta name="description" content={data?.category?.seo_description || "description"}/>
+            {/*<meta property="og:image" content={data?.category?.seo_image?.link}/>*/}
             <link rel="canonical" href={`${categoryLink.slug}`}/>
             <title>Home</title>
         </Head>
@@ -91,8 +91,8 @@ const DynamicPageFirstStep = ({ data }: Props) => {
             <div className="container">
                 <div className="row">
                     <div className="row best_cities section ">
-                        <h3>{changedCategory?.category?.header_1 }</h3>
-                        <BestCities cities={changedCategory?.cities?.data} categoryLink={categoryLink.slug}/>
+                        <h3>{changedCategory?.category?.header_1 || "" }</h3>
+                        <BestCities cities={changedCategory?.cities?.data || ""} categoryLink={categoryLink.slug}/>
                     </div>
                 </div>
             </div>
@@ -101,14 +101,14 @@ const DynamicPageFirstStep = ({ data }: Props) => {
             <div className="container">
                 <div className="row best_cities section">
                     <h3>{changedCategory?.category?.header_2}</h3>
-                    <HomeSwiper  placesList={locations} categoryLink={changedCategory?.category?.link}/>
+                    <HomeSwiper  placesList={locations} categoryLink={changedCategory?.category?.link || ""}/>
                 </div>
 
             </div>
             {/* End top*/}
 
             <div className="container">
-                <About title={changedCategory?.category?.header_3}  description={changedCategory?.category.description}/>
+                <About title={changedCategory?.category?.header_3 || ""}  description={changedCategory?.category.description || ""}/>
             </div>
         </main>
         <Footer />
@@ -119,7 +119,6 @@ const DynamicPageFirstStep = ({ data }: Props) => {
 export const getStaticPaths: GetStaticPaths = async () => {
    /* const res:any = await fetch(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
     const paths =await res?.data?.map((e:{link:string})=>{params: { slug:e.link }})
-
     return {
         paths:paths || [],
         fallback:false
@@ -146,14 +145,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
             {params: { slug:"parasailing"}},
             {params: { slug:"bunjee-jumping"}},
             {params: { slug:"paramotoring"}},
-        ],
-        fallback:false
+        ] || [],
+        fallback:true
     }
 };
 
-export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
-    const res = await fetch(`https://t2sb.rcnwd.com/api/category/${params?.slug}`);
+export const getStaticProps: any = async ({params}:any) => {
+    const res = await fetch(`https://t2sb.rcnwd.com/api/category/${params?.slug }`);
     const data = await res.json();
+    if(data)
     return {
         props: {
             data
