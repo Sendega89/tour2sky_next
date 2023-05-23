@@ -117,12 +117,38 @@ const DynamicPageFirstStep = ({ data }: Props) => {
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res:any = await fetch(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+   /* const res:any = await fetch(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
     const paths =await res?.data?.map((e:{link:string})=>{params: { slug:e.link }})
+
     return {
         paths:paths || [],
         fallback:false
-    };
+    };*/
+    return {
+        paths:[
+            {params: { slug:"helicopter"}},
+            {params: { slug:"hot-air-balloon-rides"}},
+            {params: { slug:"shipping"}},
+            {params: { slug:"airplane-tours"}},
+            {params: { slug:"peshkom"}},
+            {params: { slug:"polzkom"}},
+            {params: { slug:"skydiving"}},
+            {params: { slug:"paragliding"}},
+            {params: { slug:"hang-gliding"}},
+            {params: { slug:"glider-flights"}},
+            {params: { slug:"trike-flights"}},
+            {params: { slug:"aerobatics"}},
+            {params: { slug:"seaplane-tours"}},
+            {params: { slug:"jet-fighter-rides"}},
+            {params: { slug:"pilot-lessons"}},
+            {params: { slug:"indoor-skydiving"}},
+            {params: { slug:"zero-g-flight"}},
+            {params: { slug:"parasailing"}},
+            {params: { slug:"bunjee-jumping"}},
+            {params: { slug:"paramotoring"}},
+        ],
+        fallback:false
+    }
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({params}) => {
