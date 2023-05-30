@@ -146,7 +146,6 @@ export const productAPI = {
         return instance.get(`service/link/${link}`)
     },
     getFilteredCatalogAPI(filterOptions) {
-
         let cities = filterOptions?.cities?.map(c => `&popular_cities%5B%5D=${+c}`).join("")
         let rating = filterOptions?.rating?.map(r => `&rating%5B%5D=${+r}`).join("")
         return instance.get(`service/list?category_link=${filterOptions?.categoryLink ?? ""}

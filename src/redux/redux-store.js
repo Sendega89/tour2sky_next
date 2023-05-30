@@ -4,6 +4,7 @@ import page_Reducer from "./page_Reducer";
 import profile_Reducer from "@/redux/profile_Reducer";
 import directory_Reducer from "@/redux/directory_Reducer";
 import location_Reducer from "@/redux/location_Reducer";
+import productCards_Reducer from "@/redux/productCards_Reducer";
 
 export const StateType = {
 
@@ -15,6 +16,7 @@ let reducers = combineReducers({
     profilePage: profile_Reducer,
     directory:directory_Reducer,
     location:location_Reducer,
+    productCards:productCards_Reducer,
 });
 
 

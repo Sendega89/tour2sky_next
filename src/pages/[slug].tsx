@@ -10,6 +10,7 @@ import About from "../components/About/About"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
 import { GetStaticPaths } from "next";
+import axios from "axios";
 
 
 type Data = {
@@ -117,7 +118,7 @@ const DynamicPageFirstStep = ({ data }: Props) => {
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-   /* const res:any = await fetch(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+    /*const res:any = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
     const paths =await res?.data?.map((e:{link:string})=>{params: { slug:e.link }})
     return {
         paths:paths || [],

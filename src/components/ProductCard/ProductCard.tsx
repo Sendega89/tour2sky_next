@@ -36,7 +36,7 @@ const ProductCard = (props:any) => {
         const [checked, setChecked] = useState(true);
         const handleChange = () => {
             /*if (props.isAuth) {
-                setChecked(event.target.checked);
+                setChecked(event.target?.checked);
             }*/
         }
 
@@ -44,7 +44,6 @@ const ProductCard = (props:any) => {
             return <div className="cat_item">
                 <div className="cat_item_vn row">
                     <div className="cat_item_img">
-
                             <Link style={{minWidth:"100%"}}
                                   href={`/${props.categoryLink}/${props.cityLink}/${props.link}`}>
                                 <Image layout={"fill"} src={props.img?.data[0]?.link ? props.img?.data[0]?.link : itemImage}

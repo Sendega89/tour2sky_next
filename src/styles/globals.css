@@ -1989,7 +1989,7 @@ img.mfp-img {
 }
 
 .cat_item_img {
-  width: 263px;
+  /*width: 263px;*/
   height:196px;
   overflow: hidden;
   max-height: 197px;
@@ -2006,15 +2006,15 @@ img.mfp-img {
 .cat_item_img img {
   position: absolute;
   width: 100%;
-  transform: translate(-50%, -50%);
+  transform: translate(0%, 0%);
   left: 50%;
   top: 50%;
-  transform-origin: center /*left*/;
+  transform-origin: center;
 }
 
 .cat_item_img img:hover {
-  -webkit-transform: scale(1.1) translate(-50%, -50%);
-  -moz-transform: scale(1.1) translate(-50%, -50%);
+  -webkit-transform: scale(1.25) translate(-10%, -10%);
+  -moz-transform: scale(1.1) translate(-10%, -10%);
   -o-transform: scale(1.1) translate(-50%, -50%);
 }
 
@@ -2388,9 +2388,11 @@ img.mfp-img {
 
 .wighet {
   margin-bottom: 55px;
+  width: 100%;
 }
 
 .wighet_row {
+ width: 100%;
 }
 
 .wighet h4 {
