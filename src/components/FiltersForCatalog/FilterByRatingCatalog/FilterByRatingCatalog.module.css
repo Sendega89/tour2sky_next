@@ -1,0 +1,51 @@
+.filterByRatingContainer {
+    margin-bottom: 20px;
+}
+.labelText {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: #2f3337;
+    display: inline-block;
+    padding-top: 2px;
+    padding-left: 10px;
+}
+
+.customBigCheckbox input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.customBigCheckbox {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.customBigCheckbox__checkbox{
+    /*margin-right: 8px;*/
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    outline: solid 2px #b6c2cc;
+    border: solid 2px white;
+    transition: border 0.3s ease;
+}
+
+.customBigCheckbox input[type="checkbox"]:checked + .customBigCheckbox__checkbox {
+    background-color: #2980b9;
+    outline: solid 2px #2980b9;
+}
+
+.customBigCheckbox:hover .customBigCheckbox__checkbox {
+    background-color: #2980b9;
+    outline: solid 2px #2980b9;
+}
+
+.checkbox_item {
+    margin-bottom: 17px;
+
+}
+
+.checkbox_item:last-child {
+    margin: 0;
+}

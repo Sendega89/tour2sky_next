@@ -8,40 +8,16 @@ import {getPopular_city} from "@/redux/location_Reducer";
 import Slider from "rc-slider";
 import Link from "next/link";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import axios from "axios";
-import {getFilteredCatalog} from "@/redux/productCards_Reducer";
 
-
-/*type Data = {
-    id: number;
-    name: string;
-    category: {
-        id: number;
-        title: string;
-        seo_title: string;
-        seo_description: string;
-        seo_image: {
-            link: string
-        }
-        header_1: string;
-        header_2: string;
-        header_3: string;
-        link: string;
-        description: string
-    };
-    description: string;
-    cities: { data: [] }
-    services: { data: [] },
-    category_id: string,
-    region_id: string,
-    seo_title: string,
-
-}*/
-/*type Props = {
-    data: Data;
-}*/
+import FilterByPrice from "../../components/FiltersForCatalog/FilterByPrice/FilterByPrice";
+import {getFilteredCatalog} from "../../redux/productCards_Reducer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import FilterByLength from "../../components/FiltersForCatalog/FilterByLength/FilterByLength";
+import FilterByRatingCatalog from "../../components/FiltersForCatalog/FilterByRatingCatalog/FilterByRatingCatalog";
+import PaginatorContainer from "../../components/PaginatorContainer/PaginatorContainer";
+import {getCategoriesView} from "../../redux/directory_Reducer";
 
 
 const Activity = ({data}) => {
@@ -51,7 +27,6 @@ const Activity = ({data}) => {
     const router = useRouter();
     const {currentLink, currentCity} = router.query;
     const productCards = useSelector((state) => state.productCards);
-    /*const productCards = activityLocation?.services?.data*/
     const pagination = useSelector((state) => state.productCards.pagination);
     //const isFavoriteItem = useSelector((state) => state.myAccount.isFavoriteItem);
     const getPopularCities = useSelector(() => getPopular_city);
@@ -60,12 +35,13 @@ const Activity = ({data}) => {
     const [page, setPage] = useState(pagination.current_page || 1);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(100);
-    const [minTime, setMinTime] = useState(10);
+    const [minTime, setMinTime] = useState(0);
     const [maxTime, setMaxTime] = useState(100);
     const [sort, setSort] = useState("")
     const [rating, setRating] = useState([]);
-
-
+    const getCategoryViewInfo = useSelector(() => getCategoriesView)
+    const categoryLink = router.query;
+    const changedCategory = useSelector((state) => state.directory.categoriesView.category?.seo_image?.link)
     const changeSelect = (e) => {
         setSort(e.target.value)
     }
@@ -78,8 +54,8 @@ const Activity = ({data}) => {
             newArray
         );
     }
-
     useEffect(() => {
+        dispatch(getCategoryViewInfo(categoryLink.slug))
         //dispatch(activityInLocation(categoryLink, currentCity))
         if (activityLocation?.category_id && activityLocation?.region_id) {
             dispatch(getPopularCities(
@@ -88,9 +64,9 @@ const Activity = ({data}) => {
             ))
         }
         dispatch(filterCatalog({
-            categoryLink:activityLocation?.category_link || ""
-            , currentCity:activityLocation?.city_link || ""
-            ,activityLocationLink:activityLocation?.link,
+            categoryLink: activityLocation?.category_link || ""
+            , currentCity: activityLocation?.city_link || ""
+            , activityLocationLink: activityLocation?.link,
             sort, rating, page,
         }))
     }, [sort, rating, currentCity, activityLocation, data])
@@ -105,7 +81,7 @@ const Activity = ({data}) => {
         <Header/>
         <div className="catalog">
             <div className="header_title"
-                 style={{backgroundImage: `url(${activityLocation?.seo_image ? activityLocation?.seo_image.link : ""})`}}>
+                 style={{backgroundImage: `url(${activityLocation?.seo_image ? activityLocation?.seo_image.link : changedCategory ? changedCategory : ""})`}}>
                 <div className="container">
                     <div className="row">
                         <h1>{activityLocation?.name}</h1>
@@ -140,159 +116,16 @@ const Activity = ({data}) => {
                             <div className="credit_block container">
                                 <Link href="/" className="cancelComment" title="">
                                     {/*<FontAwesomeIcon icon="fa-solid fa-times"/>*/}</Link>
-                                <div className="row wighet">
-                                    <h4>Filter by price</h4>
-                                        <div className="row wighet_row">
-                                        <Slider range enableReinitialize
-                                            onAfterChange={(value) => {
-
-                                                setMaxPrice(value[1] || 1);
-                                                setMinPrice(value[0]);
-                                                dispatch(filterCatalog({
-                                                    categoryLink:activityLocation?.category_link || ""
-                                                    , currentCity:activityLocation?.city_link || "",
-                                                    maxPrice: value[1], minPrice: value[0],
-                                                    maxTime, minTime,
-                                                    sort, rating, page
-                                                }))
-                                            }}
-                                                onChange={(value) => {
-                                                    setMaxPrice(value[1]);
-                                                    setMinPrice(value[0]);
-                                                }}
-                                                step={10}
-                                                trackStyle={{
-                                                    backgroundImage: "linear-gradient(272deg,#3cc,#2980b9)",
-                                                    padding: "3px",
-                                                }}
-                                                dotStyle={{
-                                                    backgroundColor: "#ffffff",
-                                                    cursor: "pointer",
-                                                }}
-                                                handleStyle={{
-                                                    position: "absolute",
-                                                    width: "16px",
-                                                    height: "16px",
-                                                    boxShadow: " 0 3px 4px 0 rgba(10, 31, 68, 0.1), 0 0 1px 0 rgba(10, 31, 68, 0.08)",
-                                                    backgroundColor: "white",
-                                                    backgroundImage: "white",
-                                                    cursor: "pointer",
-                                                }}
-                                                min={0}
-                                                max={1000}
-                                                defaultValue={[minPrice || 0, maxPrice || 1000]}/>
-                                        <div className={s.infoSliderPanel}>
-                                            <div className={s.info_L}>$ {minPrice || 0}</div>
-                                            <div className={s.info_R}>$ {maxPrice || 1000}</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className="row wighet">
-                                    <h4>Flight length</h4>
-                                    <div className="row wighet_row">
-                                        <Slider range
-                                                onChange={(value) => {
-                                                    setMaxTime(value[1]);
-                                                    setMinTime(value[0]);
-                                                }}
-                                                step={1}
-                                                trackStyle={{
-                                                    width:"200px",
-                                                    backgroundImage: "linear-gradient(272deg,#3cc,#2980b9)",
-                                                    padding: "3px",
-                                                }}
-                                                dotStyle={{
-                                                    backgroundColor: "#ffffff",
-                                                    backgroundImage: "none",
-                                                    cursor: "pointer",
-                                                }}
-                                                handleStyle={{
-                                                    position: "absolute",
-                                                    width: "16px",
-                                                    height: "16px",
-                                                    boxShadow: " 0 3px 4px 0 rgba(10, 31, 68, 0.1), 0 0 1px 0 rgba(10, 31, 68, 0.08)",
-                                                    backgroundColor: "white",
-                                                    backgroundImage: "white",
-                                                    cursor: "pointer",
-                                                }}
-                                                min={+minTime}
-                                                max={+maxTime}
-                                                defaultValue={[10, 200]}
-                                             onAfterChange={(value) => {
-                                                 setMaxTime(value[1]);
-                                                 setMinTime(value[0]);
-                                                 dispatch(filterCatalog({
-                                                     categoryLink:activityLocation?.category_link || ""
-                                                     , currentCity:activityLocation?.city_link || "",
-                                                     maxTime: value[1], minTime: value[0],
-                                                     maxPrice, minPrice,
-                                                     sort, rating, page
-                                                 }))
-                                             }}
-
-                                        />
-                                        <div className={s.infoSliderPanel}>
-                                            {/*<div className={s.info_L}>{minTime || 0} min</div>
-                                            <div className={s.info_R}>{maxTime || 300} max</div>*/}
-                                            <div className={s.info_L}>{0} min</div>
-                                            <div className={s.info_R}>{300} max</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row wighet">
-                                    <h4>Filter by Rating</h4>
-                                    <div className="row wighet_row">
-                                        <div className="row checkbox_row">
-                                            <div className="row checkbox_item">
-                                                <label className="custom-big-checkbox">
-                                                    <input type="checkbox" id="5" value={5}
-                                                           className="align-self-center" onChange={changeCheckBox}
-                                                    />
-                                                    <span className="custom-big-checkbox__checkbox">
-                                                </span>
-                                                </label>
-                                                <span className="labeltext">5 star</span>
-                                            </div>
-                                            <div className="row checkbox_item">
-                                                <label className="custom-big-checkbox">
-                                                    <input type="checkbox" id="4" value={4}
-                                                           className="align-self-center" onChange={changeCheckBox}/>
-                                                    <span className="custom-big-checkbox__checkbox">
-                                                </span>
-                                                </label>
-                                                <span className="labeltext">4 star</span>
-                                            </div>
-                                            <div className="row checkbox_item">
-                                                <label className="custom-big-checkbox">
-                                                    <input type="checkbox" name="3" id="3" value={3}
-                                                           className="align-self-center" onChange={changeCheckBox}/>
-                                                    <span className="custom-big-checkbox__checkbox">
-                                            </span>
-                                                </label>
-                                                <span className="labeltext">3 star</span>
-                                            </div>
-                                            <div className="row checkbox_item">
-                                                <label className="custom-big-checkbox">
-                                                    <input type="checkbox" id="2" value={2}
-                                                           className="align-self-center" onChange={changeCheckBox}/>
-                                                    <span className="custom-big-checkbox__checkbox">
-                                            </span>
-                                                </label>
-                                                <span className="labeltext">2 star</span>
-                                            </div>
-                                            <div className="row checkbox_item">
-                                                <label className="custom-big-checkbox">
-                                                    <input type="checkbox" id="1" value={1}
-                                                           className="align-self-center" onChange={changeCheckBox}/>
-                                                    <span className="custom-big-checkbox__checkbox">
-                                            </span>
-                                                </label>
-                                                <span className="labeltext">1 star</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <FilterByPrice activityLocation={activityLocation} maxTime={maxTime} minTime={minTime}
+                                               sort={sort} rating={rating} page={page} minPrice={minPrice}
+                                               maxPrice={maxPrice}
+                                               setMaxPrice={setMaxPrice} setMinPrice={setMinPrice}/>
+                                <FilterByLength activityLocation={activityLocation} minTime={minTime}
+                                                setMinTime={setMinTime}
+                                                sort={sort} rating={rating} page={page} setMaxTime={setMaxTime}
+                                                maxPrice={maxPrice} maxTime={maxTime}
+                                                minPrice={minPrice}/>
+                                <FilterByRatingCatalog changeCheckBox={changeCheckBox} />
                                 <div className="row wighet">
                                     <h4>Top cities</h4>
                                     <div className="row wighet_row">
@@ -314,7 +147,6 @@ const Activity = ({data}) => {
                     <div className="catalog_r">
                         <div className="row cat_top">
                             <h4>{productCards?.data?.length} tours found</h4>
-                            {/*<h4> tours found</h4>*/}
                             <div className="short">
                                 <select onChange={changeSelect}>
                                     <option value="price_asc">Price from low to high</option>
@@ -359,12 +191,12 @@ const Activity = ({data}) => {
                             />)}*/}
                         </div>
                         <div className="row">
-                            {/* <PaginatorContainer totalItemCount={pagination.total}
+                            <PaginatorContainer totalItemCount={pagination.total}
                                                 pageSize={pagination.count}
                                                 currentPage={pagination.current_page}
                                                 totalPages={pagination.total_pages}
                                                 links={pagination.links}
-                                                setPage={setPage}/>*/}
+                                                setPage={setPage}/>
 
                         </div>
                         <div className="row container">

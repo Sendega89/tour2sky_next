@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 //import {getCategories, getCategoriesView} from "@/redux/directory_Reducer";
 //import {getTopLocations} from "@/redux/page_Reducer";
 import React, {useEffect} from "react";
@@ -10,10 +10,11 @@ import About from "../components/About/About"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
 import { GetStaticPaths } from "next";
-import axios from "axios";
+import {getTopLocations} from "@/redux/page_Reducer";
+import {getCategoriesView} from "@/redux/directory_Reducer";
 
 
-type Data = {
+/*type Data = {
     id: number;
     name: string;
     category: {
@@ -36,28 +37,28 @@ type Data = {
 }
 type Props = {
     data: Data;
-}
+}*/
 
 
 
-const DynamicPageFirstStep = ({ data }: Props) => {
+const DynamicPageFirstStep = ({ data }) => {
 
     const router = useRouter();
     const categoryLink = router.query;
-
-    //const getCategoryViewInfo = useSelector(() => getCategoriesView)
-    //const getLocations = useSelector(() => getTopLocations)
+    const dispatch = useDispatch()
+    const getCategoryViewInfo = useSelector(() => getCategoriesView)
+    const getLocations = useSelector(() => getTopLocations)
     //const changedCategory = useSelector((state) => state.directory.categoriesView)
-    const locations = useSelector((state:any) => state.page.topLocations)
-    const changedCategory:Data = data
+    const locations = useSelector((state) => state.page.topLocations)
+    const changedCategory = data
 
     useEffect(() => {
-        /*if(categoryLink.slug){
+        if(categoryLink.slug){
             dispatch(getCategoryViewInfo(categoryLink.slug))
-        }*/
+        }
 
         if(changedCategory?.category?.id){
-           // dispatch(getLocations(changedCategory?.category?.id))
+            dispatch(getLocations(changedCategory?.category?.id))
         }
     }, [categoryLink,changedCategory?.category?.id])
     return ( <>
@@ -117,7 +118,7 @@ const DynamicPageFirstStep = ({ data }: Props) => {
 };
 
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
     /*const res:any = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
     const paths =await res?.data?.map((e:{link:string})=>{params: { slug:e.link }})
     return {
@@ -151,7 +152,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 };
 
-export const getStaticProps: any = async ({params}:any) => {
+export const getStaticProps = async ({params}) => {
     const res = await fetch(`https://t2sb.rcnwd.com/api/category/${params?.slug }`);
     const data = await res.json();
     if(data)

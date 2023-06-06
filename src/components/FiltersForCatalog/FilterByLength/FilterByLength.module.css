@@ -1,0 +1,13 @@
+.filterByLengthContainer {
+    margin-bottom: 20px;
+    position: relative;
+}
+.infoSliderPanel {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-weight: 700;
+    font-family: "Ubuntu",sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+}

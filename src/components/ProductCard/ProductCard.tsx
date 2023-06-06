@@ -89,9 +89,10 @@ const ProductCard = (props:any) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="cat_item_desk">
-                            {props?.description ||
-                                "This is short tour description, can be few rows of text"}
+                        <div className="cat_item_desk"
+                             dangerouslySetInnerHTML={{__html: props?.description ||"This is short tour description, can be few rows of text" }}>
+                            {/*{props?.description ||
+                                "This is short tour description, can be few rows of text"}*/}
                         </div>
                     </div>
                     <div className="cat_item_details">
