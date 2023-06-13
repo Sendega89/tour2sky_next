@@ -12,7 +12,7 @@ import Footer from "../components/Footer/Footer"
 import { GetStaticPaths } from "next";
 import {getTopLocations} from "@/redux/page_Reducer";
 import {getCategoriesView} from "@/redux/directory_Reducer";
-
+import s from "../components/SubscribeBlock/SubscribeForm.module.css"
 
 /*type Data = {
     id: number;
@@ -78,10 +78,13 @@ const DynamicPageFirstStep = ({ data }) => {
                         <div className="row">
                             <h1>{changedCategory?.category?.title}</h1>
                             <div className="ht_content">
-                                <div className={`"row header_search"`}>
-                                    <input type="text" className="input_search"
-                                           placeholder="Enter city, region or country"/>
-                                    <button>Search</button>
+                                <div className={`${s.header_search} row`}>
+                                    <form  action="">
+                                        <input type="text" className={s.input_search}
+                                               placeholder="Enter city, region or country"/>
+                                        <button>Search</button>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>

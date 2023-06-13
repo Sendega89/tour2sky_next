@@ -53,19 +53,21 @@ const PaginatorContainer = ({totalItemCount,pageSize,currentPage,totalPages,link
         count:totalPages,
         hidePrevButton:true,
         hideNextButton:true,
-        page:currentPage||null,
+        page:+currentPage||null,
         onChange:handleChange,
 
     });
+
     return (
         <nav>
             <List>
                 {items.map(({ page, type, selected, ...item }, index) => {
+
                     let children = null;
                     if (type === 'start-ellipsis' || type === 'end-ellipsis') {
                         children = '…';
                     } else if (type === 'page') {
-                        if(page > 1){
+                        if(page >= 1){
                             children = (
                                 <a name={page}
                                    type="button"

@@ -11,10 +11,11 @@ import Head from "next/head";
 
 
 const Product = ({data}:any) => {
+    const router = useRouter();
 
     const productItemView = data?.data
-    const router = useRouter();
-    const { categoryLink, activityLocationLink,productLink } = router.query;
+
+    const { slug, activity,product } = router.query;
     // @ts-ignore
     const adultsArray:any = [...Array(productItemView?.members_count).keys()]
     const handleChangeAdults = () => {
@@ -34,8 +35,8 @@ const Product = ({data}:any) => {
                 {/*breadcrumbs */}
                 <div className="row breadcrumbs_product">
                     <Link href="/">Home page</Link>
-                    <Link href={`/${categoryLink}`}>{productItemView?.category?.name}</Link>
-                    <Link href={`/${categoryLink}/${activityLocationLink}`}>{productItemView?.city?.name || productItemView?.location?.name}</Link>
+                    <Link href={`/${slug}`}>{productItemView?.category?.name}</Link>
+                    <Link href={`/${slug}/${activity}`}>{productItemView?.city?.name || productItemView?.location?.name}</Link>
                     <span>{productItemView?.name}</span>
                 </div>
                 {/*breadcrumbs*/}

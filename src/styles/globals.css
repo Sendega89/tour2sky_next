@@ -2201,14 +2201,14 @@ img.mfp-img {
   padding-right: 20px;
 }
 
-.breadcrumbs a:after,
-.breadcrumbs_product a:after {
-  /*content:url("/src/assets/img/Path Copy.svg");*/
+.breadcrumbs a::after,
+.breadcrumbs_product a::after {
+  content:url("../../images/breadcrumbsArrow.svg");
   position: absolute;
   right: 7px;
-  top: 2px;
+  top: 1px;
   display: inline-block;
-  font: normal normal normal 16px/1 FontAwesome;
+  font: normal normal normal 16px/1 Ubuntu;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;

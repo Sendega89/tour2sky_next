@@ -15,7 +15,7 @@ const otherCategories = useSelector((state)=> state.directory.otherCategories);
             <ul>
                 {categoriesInMenu.map(menuCat=>
                     <li key={menuCat.id} value={menuCat.id}>
-                        <Link href={`${menuCat?.link || ""}`}>{menuCat.name}</Link>
+                        <Link href={`/${menuCat?.link || ""}`}>{menuCat.name}</Link>
                     </li>
                 )}
                 <li className="drop-item" >
@@ -23,7 +23,7 @@ const otherCategories = useSelector((state)=> state.directory.otherCategories);
                     <ul className="drop-menu">
                         {otherCategories?.map(cat=>
                         <li className="drop-menu__item" key={cat.id+1} value={cat.id}>
-                            <Link href={`${cat?.link || ""}`}
+                            <Link href={`/${cat?.link || ""}`}
                             >{cat.name}</Link></li>)}
                     </ul>
                 </li>

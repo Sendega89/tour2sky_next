@@ -25,7 +25,7 @@ const Activity = ({data}) => {
     const activityLocation = data
     const dispatch = useDispatch();
     const router = useRouter();
-    const {currentLink, currentCity} = router.query;
+    const { slug, activity } = router.query;
     const productCards = useSelector((state) => state.productCards);
     const pagination = useSelector((state) => state.productCards.pagination);
     //const isFavoriteItem = useSelector((state) => state.myAccount.isFavoriteItem);
@@ -42,6 +42,7 @@ const Activity = ({data}) => {
     const getCategoryViewInfo = useSelector(() => getCategoriesView)
     const categoryLink = router.query;
     const changedCategory = useSelector((state) => state.directory.categoriesView.category?.seo_image?.link)
+
     const changeSelect = (e) => {
         setSort(e.target.value)
     }
@@ -64,19 +65,19 @@ const Activity = ({data}) => {
             ))
         }
         dispatch(filterCatalog({
-            categoryLink: activityLocation?.category_link || ""
-            , currentCity: activityLocation?.city_link || ""
+            categoryLink: slug || ""
+            , currentCity: activity || ""
             , activityLocationLink: activityLocation?.link,
             sort, rating, page,
         }))
-    }, [sort, rating, currentCity, activityLocation, data])
+    }, [sort, rating, activity, activityLocation, data,page])
 
     return (<>
         <Head>
             <meta name="title" content={data?.seo_title}/>
             <meta name="description" content={data?.seo_description}/>
             {/*<meta property="og:image" content={data?.seo_image?.link}/>*/}
-            <link rel="canonical" href={`${currentLink}`}/>
+            <link rel="canonical" href={`${slug}`}/>
         </Head>
         <Header/>
         <div className="catalog">
@@ -94,7 +95,7 @@ const Activity = ({data}) => {
                     {/*breadcrumbs*/}
                     <div className="row breadcrumbs">
                         <Link href="/">Home</Link>
-                        <Link href={`/${currentLink}`}>{activityLocation?.category_name}</Link>
+                        <Link href={`/${slug}`}>{activityLocation?.category_name}</Link>
                         <span>{activityLocation?.city_name}</span>
                     </div>
                     {/* breadcrumbs*/}
@@ -193,7 +194,7 @@ const Activity = ({data}) => {
                         <div className="row">
                             <PaginatorContainer totalItemCount={pagination.total}
                                                 pageSize={pagination.count}
-                                                currentPage={pagination.current_page}
+                                                currentPage={page}
                                                 totalPages={pagination.total_pages}
                                                 links={pagination.links}
                                                 setPage={setPage}/>
