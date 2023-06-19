@@ -199,14 +199,32 @@ const Activity = ({data}) => {
 };
 
 export const getStaticPaths = async () => {
+    const resCat = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+    const resCity = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=cities`);
+    const resLocations = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=locations`);
 
+    const res = {slug: [...resCat.data.data], activity: [...resCity.data.data, ...resLocations.data.data]}
+
+
+    const result = [];
+
+    for (let i = 0; i < res.slug.length; i++) {
+        for (let j = i; j < res.activity.length; j++) {
+            const paths = {
+                params: {
+                    slug: res.slug[i].link,
+                    activity: res.activity[j].link
+                }
+            }
+            result.push(paths)
+        }
+    }
     return {
-        paths: [
-            {params: {slug: "helicopter", activity: "sedona"},},
-            {params: {slug: "hot-air-balloon-rides", activity: "sedona"}},
-        ],
-        fallback: true,
-    };
+        paths: result || [],
+        fallback: true
+
+
+    }
 };
 export const getStaticProps = async ({params}) => {
     const res = await axios.get(`https://t2sb.rcnwd.com/api/page/activity-location/special-link/${params?.slug}-${params?.activity}`);

@@ -1,13 +1,15 @@
 import React from 'react';
 import {GetStaticPaths, GetStaticProps} from "next";
 import Link from "next/link";
-import RatingTour from "@/components/Rating/RatingTour";
+
 import SlickSlider from "../../../components/SlickSlider/SlickSlider"
 //import BestCities from "@/components/BestCities/BestCities";
 import ProductAccordion from "@/components/ProductAccordion/ProductAccordion";
 import {useRouter} from "next/router";
 import image from "../../../../images/product.jpg"
 import Head from "next/head";
+import axios from "axios";
+import RatingTour from "@/components/Rating/RatingTour";
 
 
 const Product = ({data}:any) => {
@@ -140,7 +142,39 @@ const Product = ({data}:any) => {
 
     );
 };
+
 export const getStaticPaths: GetStaticPaths = async () => {
+   /* const resCat = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+    const resCity = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=cities`);
+    const resLocations = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=locations`);
+    const resServices = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=services`);
+    const res = {
+        slug: [...resCat.data.data],
+        activity: [...resCity.data.data, ...resLocations.data.data],
+        product: [...resServices.data.data]
+    }
+    const result = [];
+    for (let i = 0; i < res.slug.length; i++) {
+        for (let j = i; j < res.activity.length; j++) {
+            for (let k = i; k < res.activity.length; k++) {
+                const paths = {
+                    params: {
+                        slug: res.slug[i].link,
+                        activity: res.activity[j].link,
+                        product: res.product[k]
+                    }
+
+                }
+                result.push(paths)
+            }
+
+        }
+    }
+    return {
+        paths: result || [],
+        fallback: true
+    }*/
+
     return {
         paths: [
             { params: { slug: "helicopter", activity:"sedona",product:"bear-wallow-run-helicopter-tour-of-sedona"}, },
