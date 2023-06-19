@@ -13,6 +13,7 @@ import { GetStaticPaths } from "next";
 import {getTopLocations} from "@/redux/page_Reducer";
 import {getCategoriesView} from "@/redux/directory_Reducer";
 import s from "../components/SubscribeBlock/SubscribeForm.module.css"
+import axios from "axios";
 
 /*type Data = {
     id: number;
@@ -39,8 +40,23 @@ type Props = {
     data: Data;
 }*/
 
+/* const fu = async () => {
+     const res = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+     const params =await res.data.data.map((e)=>{
+         return {
+            params: e.link
+         }
+     })
+        for (let i=0;params.length<i;i++){
 
+     }
 
+     /!*paths:[
+         {params: { slug:"helicopter"}},*!/
+
+     console.log(params)
+ }
+fu()*/
 const DynamicPageFirstStep = ({ data }) => {
 
     const router = useRouter();
@@ -122,8 +138,8 @@ const DynamicPageFirstStep = ({ data }) => {
 
 
 export const getStaticPaths = async () => {
-    /*const res:any = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
-    const paths =await res?.data?.map((e:{link:string})=>{params: { slug:e.link }})
+   /* const res = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=categories`);
+    const paths =await res.data.data.map((e)=>{params: { slug:e.link }})
     return {
         paths:paths || [],
         fallback:false
