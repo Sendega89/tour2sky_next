@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {GetStaticPaths, GetStaticProps} from "next";
+//import {GetStaticPaths, GetStaticProps} from "next";
 import Head from "next/head";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import s from "./Catalog.module.css";
-import {getPopular_city} from "@/redux/location_Reducer";
-import Slider from "rc-slider";
 import Link from "next/link";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import axios from "axios";
-
 import FilterByPrice from "../../components/FiltersForCatalog/FilterByPrice/FilterByPrice";
 import {getFilteredCatalog} from "../../redux/productCards_Reducer";
 import Header from "../../components/Header/Header";
@@ -18,6 +15,7 @@ import FilterByLength from "../../components/FiltersForCatalog/FilterByLength/Fi
 import FilterByRatingCatalog from "../../components/FiltersForCatalog/FilterByRatingCatalog/FilterByRatingCatalog";
 import PaginatorContainer from "../../components/PaginatorContainer/PaginatorContainer";
 import {getCategoriesView} from "../../redux/directory_Reducer";
+import {getPopular_city} from "../../redux/location_Reducer";
 
 
 const Activity = ({data}) => {
@@ -176,20 +174,6 @@ const Activity = ({data}) => {
                                 duration={card.duration}
                                 img={card.images}
                             />)}
-                            {/*{data?.services?.data.map((card: any) => <ProductCard
-                                key={card.id}
-                                description={card.description}
-                                id={card.id}
-                                categoryLink={data?.category_link}
-                                link={card.link}
-                                cityLink={data?.city_link}
-                                name={card.name}
-                                booking_link={card.booking_link}
-                                rating={card.rating}
-                                price={card.price}
-                                duration={card.duration}
-                                img={card.images}
-                            />)}*/}
                         </div>
                         <div className="row">
                             <PaginatorContainer totalItemCount={pagination.total}
