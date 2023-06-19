@@ -70,6 +70,11 @@ const Activity = ({data}) => {
         }))
     }, [sort, rating, activity, activityLocation, data,page])
 
+
+    /*if (router.isFallback) {
+        debugger
+        return <h1>Data is loading</h1>;
+    }*/
     return (<>
         <Head>
             <meta name="title" content={data?.seo_title}/>
@@ -204,8 +209,6 @@ export const getStaticPaths = async () => {
     const resLocations = await axios.get(`https://t2sb.rcnwd.com/api/page/links?entity=locations`);
 
     const res = {slug: [...resCat.data.data], activity: [...resCity.data.data, ...resLocations.data.data]}
-
-
     const result = [];
 
     for (let i = 0; i < res.slug.length; i++) {
@@ -219,11 +222,10 @@ export const getStaticPaths = async () => {
             result.push(paths)
         }
     }
+
     return {
         paths: result || [],
-        fallback: true
-
-
+        fallback: false
     }
 };
 export const getStaticProps = async ({params}) => {
@@ -232,7 +234,7 @@ export const getStaticProps = async ({params}) => {
     return {
         props: {
             data
-        },
+        } || {},
     };
 };
 export default Activity;

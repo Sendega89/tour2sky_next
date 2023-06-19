@@ -179,7 +179,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         paths: [
             { params: { slug: "helicopter", activity:"sedona",product:"bear-wallow-run-helicopter-tour-of-sedona"}, },
         ],
-        fallback: true,
+        fallback: false,
     };
 };
 export const getStaticProps:GetStaticProps = async ({params}) => {
