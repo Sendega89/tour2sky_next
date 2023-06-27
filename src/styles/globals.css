@@ -2203,7 +2203,7 @@ img.mfp-img {
 
 .breadcrumbs a::after,
 .breadcrumbs_product a::after {
-  content:url("../../images/breadcrumbsArrow.svg");
+  content:url("../../images/breadcrumbs_arrow.svg");
   position: absolute;
   right: 7px;
   top: 1px;
